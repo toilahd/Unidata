@@ -2,47 +2,48 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.unidata.HelloController">
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.unidata.controller.LoginController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-   <children>
-      <AnchorPane layoutX="100.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="129.0" prefWidth="361.0">
-         <children>
-            <Text layoutX="21.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to University Management">
-               <font>
-                  <Font name="Roboto Bold" size="19.0" />
-               </font>
-            </Text>
-            <Text layoutX="157.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
-               <font>
-                  <Font name="Roboto" size="16.0" />
-               </font>
-            </Text>
-         </children>
-      </AnchorPane>
+    <children>
+        <AnchorPane layoutX="100.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="129.0" prefWidth="361.0">
+            <children>
+                <Text layoutX="21.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to University Management">
+                    <font>
+                        <Font name="Roboto Bold" size="19.0" />
+                    </font>
+                </Text>
+                <Text layoutX="157.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
+                    <font>
+                        <Font name="Roboto" size="16.0" />
+                    </font>
+                </Text>
+            </children>
+        </AnchorPane>
         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" wrappingWidth="250">
-         <font>
-            <Font name="Roboto" size="14.0" />
-         </font>
-      </Text>
-      <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Username" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" wrappingWidth="250">
-         <font>
-            <Font name="Roboto" size="14.0" />
-         </font>
-      </Text>
-      <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Password" />
-      <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #2ea6ff;" text="Login" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font name="Roboto Bold" size="14.0" />
-         </font>
-      </Button>
-   </children>
+            <font>
+                <Font name="Roboto" size="14.0" />
+            </font>
+        </Text>
+        <TextField fx:id="username" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#loginAdmin" prefHeight="30.0" prefWidth="250.0" promptText="Username" />
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" wrappingWidth="250">
+            <font>
+                <Font name="Roboto" size="14.0" />
+            </font>
+        </Text>
+        <PasswordField fx:id="password" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#loginAdmin" prefHeight="30.0" prefWidth="250.0" promptText="Password" />
+        <Button fx:id="button_login" mnemonicParsing="false" onAction="#loginAdmin" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #2ea6ff;" text="Login" textAlignment="CENTER" textFill="WHITE">
+            <font>
+                <Font name="Roboto Bold" size="14.0" />
+            </font>
+        </Button>
+    </children>
 </VBox>
