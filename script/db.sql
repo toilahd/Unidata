@@ -1,4 +1,3 @@
-    alter session set "_ORACLE_SCRIPT"=true;
 
 -- Xóa cấu trúc & dữ liệu (nếu có) trước khi tạo cấu trúc:
 BEGIN
@@ -43,6 +42,24 @@ EXCEPTION
         NULL;
 END;
 /
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE ACCOUNT CASCADE CONSTRAINTS';
+EXCEPTION
+    WHEN OTHERS THEN
+        NULL;
+END;
+/
+
+
+--
+-- ACCOUNT
+CREATE TABLE ACCOUNT (
+    ID INT PRIMARY KEY,
+    username VARCHAR2(50) NOT NULL,
+    password VARCHAR2(50) NOT NULL,
+    VAITRO VARCHAR2(20) CHECK (VAITRO IN ('ADMIN', 'NVCB', 'GV', 'NV PDT', 'NV PKT', 'NV TCHC', 'NV CTSV', 'TRGĐV'))
+);
+INSERT INTO ACCOUNT (ID, username, password, VAITRO) VALUES (1, 'admin', 'admin123', 'ADMIN');
 
 -- ĐƠN VỊ
 CREATE TABLE DONVI (
