@@ -178,7 +178,7 @@ WHERE NV.MADV IN (
     WHERE TRGDV = SYS_CONTEXT('USERENV', 'SESSION_USER')
 );
 -- Cấp quyền cho TRGDV trên view MOMON
-GRANT SELECT ON UV_TRGDV_MOMON TO RL_TRGDV;
+GRANT SELECT ON UV_TRGDV_MOMON TO RL_TRDGV;
 
 -- Sinh viên có quyền xem các dòng dữ liệu trong quan hệ MOMON liên quan các dòng
 -- mở các học phần thuộc quyền phụ trách chuyên môn bởi Khoa mà sinh viên đang theo học.
@@ -211,7 +211,6 @@ BEGIN
 
    SELECT USER INTO v_user FROM DUAL;
 
-
    BEGIN
       SELECT 'SV' INTO v_role FROM SINHVIEN WHERE MASV = v_user;
    EXCEPTION
@@ -232,7 +231,7 @@ BEGIN
          v_predicate := '1=1';  
       WHEN 'NV PĐT' THEN 
          v_predicate := '1=1'; 
-      WHEN 'GV' THEN 
+      WHEN 'GV' THEN
          v_predicate := 'KHOA = ''' || v_madv || '''';
       WHEN 'SV' THEN 
          v_predicate := 'MASV = ''' || v_user || '''';
@@ -377,4 +376,3 @@ BEGIN
       policy_type     => DBMS_RLS.STATIC_POLICY
    );
 END;
-
