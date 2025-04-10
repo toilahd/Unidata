@@ -42,14 +42,14 @@
                 <Font name="Roboto" size="14.0" />
             </font>
         </Text>
-        <TextField fx:id="usernameField" prefHeight="30.0" prefWidth="250.0" promptText="Username" />
+        <TextField fx:id="usernameField" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Username" />
 
         <Text text="Password:">
             <font>
                 <Font name="Roboto" size="14.0" />
             </font>
         </Text>
-        <PasswordField fx:id="passwordField" prefHeight="30.0" prefWidth="250.0" promptText="Password" />
+        <PasswordField fx:id="passwordField" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Password" />
 
         <Button fx:id="loginButton" onAction="#onLogin" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #2ea6ff;" text="Login" textFill="WHITE">
             <font>
