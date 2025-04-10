@@ -9,10 +9,12 @@ module com.example.unidata {
     opens com.example.unidata to javafx.fxml;
     exports com.example.unidata;
 
-    // add
     exports com.example.unidata.controller;
     opens com.example.unidata.controller to javafx.fxml;
 
     exports com.example.unidata.controller.AdminController;
     opens com.example.unidata.controller.AdminController to javafx.fxml;
+
+    exports com.example.unidata.util;
+    opens com.example.unidata.util to javafx.fxml;
 }
