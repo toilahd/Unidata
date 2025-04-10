@@ -20,13 +20,13 @@ import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
     @FXML
-    private TextField username;
+    private TextField usernameField;
 
     @FXML
-    private PasswordField password;
+    private PasswordField passwordField;
 
     @FXML
-    private Button button_login;
+    private Button loginButton;
 
     //DATABASE TOOLS
     private Connection connect;
@@ -34,7 +34,7 @@ public class LoginController implements Initializable {
     private ResultSet result;
 
     //CREATE DATABASE
-    public void loginAdmin() {
+    public void onLogin() {
         String sql = "SELECT * FROM ACCOUNT WHERE username = ? and password = ?";
         DatabaseConnection database;
         connect = DatabaseConnection.connectDb();
@@ -43,12 +43,12 @@ public class LoginController implements Initializable {
             Alert alert;
 
             prepare = connect.prepareStatement(sql);
-            prepare.setString(1, username.getText());
-            prepare.setString(2, password.getText());
+            prepare.setString(1, usernameField.getText());
+            prepare.setString(2, passwordField.getText());
 
             result = prepare.executeQuery();
 
-            if(username.getText().isEmpty() || password.getText().isEmpty()) {
+            if(usernameField.getText().isEmpty() || passwordField.getText().isEmpty()) {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
@@ -62,15 +62,15 @@ public class LoginController implements Initializable {
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Message");
                     alert.setHeaderText(null);
-                    alert.setContentText("Successfully Login!");
+                    alert.setContentText("Successfully Logged In as " + role + "!");
                     alert.showAndWait();
 
-                    button_login.getScene().getWindow().hide();
+                    loginButton.getScene().getWindow().hide();
                     //LINK TO NEXT SCENE
                     String fxmlFile;
                     switch (role.toLowerCase()) {
                         case "admin":
-                            fxmlFile = "dashboard.fxml";
+                            fxmlFile = "/com/example/unidata/dashboard.fxml";
                             break;
                         case "teacher":
                             fxmlFile = "teacher.fxml";
@@ -83,10 +83,11 @@ public class LoginController implements Initializable {
                             break;
                     }
 
-                    Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
+                    Parent root = FXMLLoader.load(getClass().getResource("/com/example/unidata/dashboard.fxml"));
                     Stage stage = new Stage();
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
+                    stage.setTitle("Dashboard - " + role);
                     stage.show();
 
                 }else{
