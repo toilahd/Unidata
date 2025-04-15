@@ -1,6 +1,7 @@
 package com.example.unidata.controller;
 
 import com.example.unidata.DatabaseConnection;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,6 +18,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
+import java.util.ArrayList;
+import java.io.IOException;
 
 public class LoginController implements Initializable {
     @FXML
@@ -35,73 +38,124 @@ public class LoginController implements Initializable {
 
     //CREATE DATABASE
     public void onLogin() {
-        String sql = "SELECT * FROM ACCOUNT WHERE username = ? and password = ?";
-        DatabaseConnection database;
-        connect = DatabaseConnection.connectDb();
+        Alert alert;
+        String username = usernameField.getText();
+        String password = passwordField.getText();
 
+        // Check if fields are empty
+        if (username.isEmpty() || password.isEmpty()) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Please fill all blank fields!");
+            alert.showAndWait();
+            return;
+        }
+
+        // Try to establish a connection
+        connect = DatabaseConnection.connectDb(username, password);
+
+        if (connect == null) {
+            // If the connection fails, show an error message
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Failed to connect to the database. Check username or password (may be you dont have an account)");
+            alert.showAndWait();
+            return;
+        }
+
+        // Proceed with fetching roles from the database
         try {
-            Alert alert;
-
+            String sql = "SELECT GRANTED_ROLE FROM USER_ROLE_PRIVS";
             prepare = connect.prepareStatement(sql);
-            prepare.setString(1, usernameField.getText());
-            prepare.setString(2, passwordField.getText());
-
             result = prepare.executeQuery();
+            ArrayList<String> grantedRoles = new ArrayList<String>();
 
-            if(usernameField.getText().isEmpty() || passwordField.getText().isEmpty()) {
+            while (result.next()) {
+                grantedRoles.add(result.getString("GRANTED_ROLE"));
+            }
+
+            if (!grantedRoles.isEmpty()) {
+                String role = determineUserRole(grantedRoles);
+
+                // Set the current role in DatabaseConnection
+                DatabaseConnection.setCurrentRole(role);
+
+                // Show information about successful login
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Successfully Logged In as " + role + "!");
+                alert.showAndWait();
+
+                // Hide the current login window and proceed to the next scene
+                loginButton.getScene().getWindow().hide();
+                loadDashboardForRole(role);
+
+            } else {
+                // If no role found, show error message
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Please fill all blank fields!");
+                alert.setContentText("There is something sus here, fix it my friend");
                 alert.showAndWait();
-            } else {
-                if(result.next()) {
-                    String role = result.getString("VAITRO");
-
-                    //Proceed To Next Scene
-                    alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Successfully Logged In as " + role + "!");
-                    alert.showAndWait();
-
-                    loginButton.getScene().getWindow().hide();
-                    //LINK TO NEXT SCENE
-                    String fxmlFile;
-                    switch (role.toLowerCase()) {
-                        case "admin":
-                            fxmlFile = "/com/example/unidata/dashboard.fxml";
-                            break;
-                        case "teacher":
-                            fxmlFile = "teacher.fxml";
-                            break;
-                        case "student":
-                            fxmlFile = "student.fxml";
-                            break;
-                        default:
-                            fxmlFile = "default.fxml"; // optional fallback
-                            break;
-                    }
-
-                    Parent root = FXMLLoader.load(getClass().getResource("/com/example/unidata/dashboard.fxml"));
-                    Stage stage = new Stage();
-                    Scene scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.setTitle("Dashboard - " + role);
-                    stage.show();
-
-                }else{
-                    //Send Error Message
-                    alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error Message");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Wrong Username/Password");
-                    alert.showAndWait();
-                }
             }
 
-        }catch (Exception e) {e.printStackTrace();}
+        } catch (Exception e) {
+            e.printStackTrace();
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("An error occurred while fetching user roles. Please try again.");
+            alert.showAndWait();
+        }
     }
+
+    // Helper method to determine the user role
+    private String determineUserRole(ArrayList<String> grantedRoles) {
+        if (grantedRoles.contains("DBA")) {
+            return "DBA";
+        } else {
+            return "null"; // or another default role if applicable
+        }
+    }
+
+    // Helper method to load the appropriate dashboard based on the role
+    private void loadDashboardForRole(String role) {
+        String fxmlFile;
+        switch (role.toLowerCase()) {
+            case "dba":
+                fxmlFile = "/com/example/unidata/dashboard.fxml";
+                break;
+            case "teacher":
+                fxmlFile = "/com/example/unidata/teacher.fxml";
+                break;
+            case "student":
+                fxmlFile = "/com/example/unidata/student.fxml";
+                break;
+            default:
+                fxmlFile = "/com/example/unidata/default.fxml"; // optional fallback
+                break;
+        }
+
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Dashboard - " + role);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Failed to load the dashboard. Please try again.");
+            alert.showAndWait();
+        }
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

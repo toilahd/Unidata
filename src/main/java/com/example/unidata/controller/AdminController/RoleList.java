@@ -20,10 +20,10 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ResourceBundle;
 
 public class RoleList implements Initializable {
+
     @FXML
     private Button btnGrantPrivileges;
 
@@ -54,12 +54,9 @@ public class RoleList implements Initializable {
     @FXML
     private TableColumn<AccountData, String> addAccounts_col_role;
 
-
     private Connection connect;
     private PreparedStatement prepare;
-    private Statement statement;
     private ResultSet result;
-
 
     public void onSignOut(ActionEvent event) {
         try {
@@ -89,7 +86,6 @@ public class RoleList implements Initializable {
         loadScene("/com/example/unidata/view_privileges.fxml", "View Privileges - ADMIN");
     }
 
-
     private void loadScene(String fxmlFile, String title) {
         try {
             Stage stage = (Stage) btnSignOut.getScene().getWindow();
@@ -102,52 +98,55 @@ public class RoleList implements Initializable {
         }
     }
 
-
     public ObservableList<AccountData> addAccountListData() {
-
         ObservableList<AccountData> listAccounts = FXCollections.observableArrayList();
 
-        String sql = "SELECT * FROM ACCOUNT";
+        String sql = "SELECT u.username, r.granted_role " +
+                "FROM all_users u " +
+                "JOIN dba_role_privs r " +
+                "ON u.username = r.grantee " +
+                "WHERE r.granted_role IN ('RL_NVCB', 'RL_GV', 'RL_NVPDT', 'RL_NVPKT', 'RL_NVTCHC', 'RL_NVCTSV', 'RL_TRDGV', 'RL_SV') " +
+                "ORDER BY u.username";
 
-        connect = DatabaseConnection.connectDb();
+        connect = DatabaseConnection.getConnection();
 
         try {
-            AccountData AccountA;
             prepare = connect.prepareStatement(sql);
             result = prepare.executeQuery();
 
+            int id = 1; // Temporary ID for display
             while (result.next()) {
-                AccountA = new AccountData(result.getInt("ID"),
-                        result.getString("username"),
-                        result.getString("password"),
-                        result.getString("VAITRO"));
+                String username = result.getString("username");
+                String role = result.getString("granted_role");
 
-                listAccounts.add(AccountA);
+                listAccounts.add(new AccountData(id++, username, role != null ? role : "No Role"));
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return listAccounts;
     }
+
 
     private ObservableList<AccountData> addAccountsListA;
 
     public void addAccountsShowListData() {
         addAccountsListA = addAccountListData();
 
+        // Set the cell value factory for the table columns
         addAccounts_col_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         addAccounts_col_username.setCellValueFactory(new PropertyValueFactory<>("username"));
-        addAccounts_col_password.setCellValueFactory(new PropertyValueFactory<>("password"));
         addAccounts_col_role.setCellValueFactory(new PropertyValueFactory<>("role"));
 
+        // Set the table items
         addAccounts_tableView.setItems(addAccountsListA);
-
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        addAccountsShowListData();
+        addAccountsShowListData(); // Call to populate table on initialization
     }
 }

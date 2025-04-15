@@ -11,15 +11,12 @@
         <AnchorPane prefHeight="42.0" prefWidth="800.0" style="-fx-background-color: #5dade2;">
             <children>
                 <Button fx:id="btnSignOut" alignment="CENTER" layoutX="672.0" layoutY="6.0" mnemonicParsing="false" onAction="#onSignOut" prefHeight="30.0" prefWidth="103.0" style="-fx-background-color: transparent; -fx-text-fill: black; -fx-border-color: transparent; -fx-background-insets: 0; -fx-padding: 0;" text="Sign Out">
-                    <!--               <graphic>-->
-                    <!--                  <FontAwesomeIconView glyphName="LOCK" size="30" />-->
-                    <!--               </graphic>-->
                 </Button>
-
-
             </children>
         </AnchorPane>
+
         <SVGPath layoutX="162.0" layoutY="124.0" />
+
         <AnchorPane layoutY="42.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="558.0" prefWidth="200.0" style="-fx-background-color: #d6eaf8;">
             <children>
                 <Button fx:id="btnUserRoleManagement" layoutX="8.0" layoutY="101.0" mnemonicParsing="false" onAction="#onUserRoleManagement" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 15;" text="User/Role Management" textFill="#323442" />
@@ -29,13 +26,14 @@
                 <Button fx:id="btnViewPrivileges" layoutX="8.0" layoutY="421.0" mnemonicParsing="false" onAction="#onViewPrivileges" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 15;" text="View Privileges" />
             </children>
         </AnchorPane>
-      <TableView fx:id="addAccounts_tableView" layoutX="236.0" layoutY="64.0" prefHeight="513.0" prefWidth="530.0">
-        <columns>
-          <TableColumn fx:id="addAccounts_col_id" prefWidth="78.4000244140625" text="ID" />
-          <TableColumn fx:id="addAccounts_col_username" prefWidth="187.20001220703125" text="UserName" />
-            <TableColumn fx:id="addAccounts_col_password" prefWidth="159.20001220703125" text="Password" />
-            <TableColumn fx:id="addAccounts_col_role" prefWidth="107.20001220703125" text="Role" />
-        </columns>
-      </TableView>
+
+        <!-- TableView with three columns -->
+        <TableView fx:id="addAccounts_tableView" layoutX="236.0" layoutY="64.0" prefHeight="513.0" prefWidth="530.0">
+            <columns>
+                <TableColumn fx:id="addAccounts_col_id" text="No" />
+                <TableColumn fx:id="addAccounts_col_username" prefWidth="243.99996948242188" text="Account Name" />
+                <TableColumn fx:id="addAccounts_col_role" prefWidth="206.0" text="Role" />
+            </columns>
+        </TableView>
     </children>
 </AnchorPane>

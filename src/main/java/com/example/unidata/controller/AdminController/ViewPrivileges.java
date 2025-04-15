@@ -1,4 +1,5 @@
 package com.example.unidata.controller.AdminController;
+import com.example.unidata.DatabaseConnection;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 
 public class ViewPrivileges implements Initializable {
     @FXML
@@ -27,7 +29,7 @@ public class ViewPrivileges implements Initializable {
 
     @FXML
     private Button btnUserRoleManagement;
-
+    
 
     public void onSignOut(ActionEvent event) {
         try {

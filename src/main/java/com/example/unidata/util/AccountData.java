@@ -1,31 +1,42 @@
 package com.example.unidata.util;
 
-public class AccountData {
-    private Integer id;
-    private String username;
-    private String password;
-    private String role;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.property.SimpleStringProperty;
 
-    public AccountData(Integer id, String username, String password, String role) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.role = role;
+public class AccountData {
+    private final IntegerProperty id;
+    private final StringProperty username;
+    private final StringProperty role;
+
+    public AccountData(int id, String username, String role) {
+        this.id = new SimpleIntegerProperty(id);
+        this.username = new SimpleStringProperty(username);
+        this.role = new SimpleStringProperty(role);
     }
 
-    public Integer getId() {
+    public IntegerProperty idProperty() {
         return id;
     }
 
-    public String getUsername() {
+    public StringProperty usernameProperty() {
         return username;
     }
 
-    public String getPassword() {
-        return password;
+    public StringProperty roleProperty() {
+        return role;
+    }
+
+    public int getId() {
+        return id.get();
+    }
+
+    public String getUsername() {
+        return username.get();
     }
 
     public String getRole() {
-        return role;
+        return role.get();
     }
 }

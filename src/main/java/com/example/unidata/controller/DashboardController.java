@@ -17,6 +17,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
+import com.example.unidata.DatabaseConnection;
+
 public class DashboardController implements Initializable {
     @FXML
     private Button btnGrantPrivileges;
@@ -39,6 +41,7 @@ public class DashboardController implements Initializable {
 
     public void onSignOut(ActionEvent event) {
         try {
+            DatabaseConnection.logout();
             Stage stage = (Stage) btnSignOut.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/unidata/login.fxml"));
             Scene scene = new Scene(loader.load());

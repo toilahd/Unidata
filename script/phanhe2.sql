@@ -2,6 +2,7 @@
 -- Câu 1: QUAN HE NHANVIEN
 -- Tạo các role cho các vai trò trong hệ thống:
 
+
 CREATE ROLE RL_NVCB; -- 500 người
 CREATE ROLE RL_GV; -- 200 người
 CREATE ROLE RL_NVPDT; -- 20 người
