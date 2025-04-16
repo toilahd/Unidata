@@ -42,7 +42,7 @@ public class RevokePrivileges implements Initializable {
     }
 
     public void onUserRoleManagement(ActionEvent event) {
-        loadScene("/com/example/unidata/user_role_management.fxml", "User/Role Management - ADMIN");
+        loadScene("/com/example/unidata/user_management.fxml", "User/Role Management - ADMIN");
     }
 
     public void onUserRoleList(ActionEvent event) {

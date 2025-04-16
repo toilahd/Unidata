@@ -10,9 +10,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.*;
 import java.util.ResourceBundle;
 
-public class RoleManagement implements Initializable {
+public class UserManagement implements Initializable {
     @FXML
     private Button btnGrantPrivileges;
 
@@ -27,6 +28,12 @@ public class RoleManagement implements Initializable {
 
     @FXML
     private Button btnViewPrivileges;
+
+
+    private Connection connect;
+    private PreparedStatement prepare;
+    private Statement statement;
+    private ResultSet result;
 
 
     public void onSignOut(ActionEvent event) {
@@ -57,8 +64,8 @@ public class RoleManagement implements Initializable {
         loadScene("/com/example/unidata/view_privileges.fxml", "View Privileges - ADMIN");
     }
 
-    public void onUserManagement(ActionEvent event) {
-        loadScene("/com/example/unidata/user_management.fxml", "User/Role Management - ADMIN");
+    public void onRoleManagement(ActionEvent event) {
+        loadScene("/com/example/unidata/role_management.fxml", "User/Role Management - ADMIN");
     }
 
 
@@ -71,6 +78,49 @@ public class RoleManagement implements Initializable {
             stage.setTitle(title);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+
+    // Create a new user
+    public void createUser(String username, String password) throws SQLException {
+        String sql = "CREATE USER " + username + " IDENTIFIED BY " + password;
+        executeStatement(sql);
+        System.out.println("User " + username + " created successfully");
+    }
+
+    // Delete a user
+    public void dropUser(String username) throws SQLException {
+        String sql = "DROP USER " + username + " CASCADE";
+        executeStatement(sql);
+        System.out.println("User " + username + " dropped successfully");
+    }
+
+    // Alter user password
+    public void alterUserPassword(String username, String newPassword) throws SQLException {
+        String sql = "ALTER USER " + username + " IDENTIFIED BY " + newPassword;
+        executeStatement(sql);
+        System.out.println("Password for user " + username + " changed successfully");
+    }
+
+    // Create a new role
+    public void createRole(String roleName) throws SQLException {
+        String sql = "CREATE ROLE " + roleName;
+        executeStatement(sql);
+        System.out.println("Role " + roleName + " created successfully");
+    }
+
+    // Delete a role
+    public void dropRole(String roleName) throws SQLException {
+        String sql = "DROP ROLE " + roleName;
+        executeStatement(sql);
+        System.out.println("Role " + roleName + " dropped successfully");
+    }
+
+    // Helper method to execute SQL statements
+    private void executeStatement(String sql) throws SQLException {
+        try (Statement stmt = connect.createStatement()) {
+            stmt.execute(sql);
         }
     }
 
