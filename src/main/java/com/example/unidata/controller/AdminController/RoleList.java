@@ -49,9 +49,6 @@ public class RoleList implements Initializable {
     private TableColumn<AccountData, String> addAccounts_col_username;
 
     @FXML
-    private TableColumn<AccountData, String> addAccounts_col_password;
-
-    @FXML
     private TableColumn<AccountData, String> addAccounts_col_role;
 
     private Connection connect;

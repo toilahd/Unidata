@@ -28,11 +28,11 @@
         </AnchorPane>
 
         <!-- TableView with three columns -->
-        <TableView fx:id="addAccounts_tableView" layoutX="236.0" layoutY="64.0" prefHeight="513.0" prefWidth="530.0">
+        <TableView fx:id="addAccounts_tableView" layoutX="236.0" layoutY="64.0" prefHeight="513.0" prefWidth="540.0">
             <columns>
-                <TableColumn fx:id="addAccounts_col_id" text="No" />
-                <TableColumn fx:id="addAccounts_col_username" prefWidth="243.99996948242188" text="Account Name" />
-                <TableColumn fx:id="addAccounts_col_role" prefWidth="206.0" text="Role" />
+                <TableColumn fx:id="addAccounts_col_id" prefWidth="30" text="No" />
+                <TableColumn fx:id="addAccounts_col_username" prefWidth="255" text="Account Name" />
+                <TableColumn fx:id="addAccounts_col_role" prefWidth="255" text="Role" />
             </columns>
         </TableView>
     </children>

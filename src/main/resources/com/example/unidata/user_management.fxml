@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.unidata.controller.AdminController.UserManagement">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.unidata.controller.AdminController.UserManagement">
     <children>
         <AnchorPane prefHeight="42.0" prefWidth="800.0" style="-fx-background-color: #5dade2;">
             <children>
@@ -33,20 +33,18 @@
         </AnchorPane>
         <Button layoutX="305.0" layoutY="88.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #008000; -fx-text-fill: white; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 15;" text="User Management" textFill="#323442" />
         <Button layoutX="488.0" layoutY="88.0" mnemonicParsing="false" onAction="#onRoleManagement" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 15;" text="Role Management" />
-        <TableView fx:id="addAccounts_tableView" layoutX="231.0" layoutY="151.0" prefHeight="258.0" prefWidth="514.0">
+        <TableView fx:id="addAccounts_tableView" layoutX="231.0" layoutY="151" prefHeight="258.0" prefWidth="520">
             <columns>
-                <TableColumn fx:id="addAccounts_col_id" prefWidth="78.4000244140625" text="ID" />
-                <TableColumn fx:id="addAccounts_col_username" prefWidth="187.20001220703125" text="UserName" />
-                <TableColumn fx:id="addAccounts_col_password" prefWidth="159.20001220703125" text="Password" />
-                <TableColumn fx:id="addAccounts_col_role" prefWidth="86.39999999999998" text="Role" />
+                <TableColumn fx:id="addAccounts_col_id" prefWidth="30" text="ID" />
+                <TableColumn fx:id="addAccounts_col_username" prefWidth="390" text="Username" />
+                <TableColumn fx:id="addAccounts_col_role" prefWidth="100" text="Action" />
             </columns>
         </TableView>
-        <TextField layoutX="534.0" layoutY="464.0" prefHeight="26.0" prefWidth="183.0" />
-        <Text layoutX="461.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UserName:" />
-        <TextField layoutX="534.0" layoutY="508.0" prefHeight="26.0" prefWidth="183.0" />
-        <Text layoutX="466.0" layoutY="526.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" />
-        <Button layoutX="286.0" layoutY="438.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="110.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 15;" text="CREATE" />
-        <Button layoutX="286.0" layoutY="482.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="110.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 15;" text="DELETE" />
-        <Button layoutX="286.0" layoutY="526.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="110.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 15;" text="UPDATE" />
+        <TextField fx:id="txtUsername" layoutX="534.0" layoutY="464.0" prefHeight="26.0" prefWidth="183.0" />
+        <Text layoutX="460.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" />
+        <TextField fx:id="txtPassword" layoutX="534.0" layoutY="508.0" prefHeight="26.0" prefWidth="183.0" />
+        <Text layoutX="462.0" layoutY="525.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" />
+        <Button fx:id="btnCreateUser" onAction="#onCreateUser" layoutX="286.0" layoutY="461.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="110.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 15;" text="CREATE" />
+        <Button fx:id="btnChangePassword" onAction="#onChangePassword" layoutX="286.0" layoutY="504.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="110.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 15;" text="UPDATE" />
     </children>
 </AnchorPane>

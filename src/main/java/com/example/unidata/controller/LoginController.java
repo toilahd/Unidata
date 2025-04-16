@@ -86,7 +86,7 @@ public class LoginController implements Initializable {
                 alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Information Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Successfully Logged In as " + role + "!");
+                alert.setContentText("Successfully Logged In as " + username + " with role: " + role + "!");
                 alert.showAndWait();
 
                 // Hide the current login window and proceed to the next scene
