@@ -68,19 +68,19 @@ public class RoleList implements Initializable {
     }
 
     public void onUserRoleManagement(ActionEvent event) {
-        loadScene("/com/example/unidata/user_management.fxml", "User/Role Management - ADMIN");
+        loadScene("/com/example/unidata/PhanHe1/user_management.fxml", "User/Role Management - ADMIN");
     }
 
     public void onGrantPrivileges(ActionEvent event) {
-        loadScene("/com/example/unidata/grant_privileges.fxml", "Grant Privileges - ADMIN");
+        loadScene("/com/example/unidata/PhanHe1/grant_privileges.fxml", "Grant Privileges - ADMIN");
     }
 
     public void onRevokePrivileges(ActionEvent event) {
-        loadScene("/com/example/unidata/revoke_privileges.fxml", "Revoke Privileges - ADMIN");
+        loadScene("/com/example/unidata/PhanHe1/revoke_privileges.fxml", "Revoke Privileges - ADMIN");
     }
 
     public void onViewPrivileges(ActionEvent event) {
-        loadScene("/com/example/unidata/view_privileges.fxml", "View Privileges - ADMIN");
+        loadScene("/com/example/unidata/PhanHe1/view_privileges.fxml", "View Privileges - ADMIN");
     }
 
     private void loadScene(String fxmlFile, String title) {
@@ -98,12 +98,23 @@ public class RoleList implements Initializable {
     public ObservableList<AccountData> addAccountListData() {
         ObservableList<AccountData> listAccounts = FXCollections.observableArrayList();
 
-        String sql = "SELECT u.username, r.granted_role " +
-                "FROM all_users u " +
-                "JOIN dba_role_privs r " +
-                "ON u.username = r.grantee " +
-                "WHERE r.granted_role IN ('RL_NVCB', 'RL_GV', 'RL_NVPDT', 'RL_NVPKT', 'RL_NVTCHC', 'RL_NVCTSV', 'RL_TRDGV', 'RL_SV') " +
-                "ORDER BY u.username";
+        String sql = """
+            SELECT u.username, r.granted_role
+            FROM all_users u
+            LEFT JOIN dba_role_privs r
+              ON u.username = r.grantee
+              AND r.granted_role IN (
+                'RL_NVCB', 'RL_GV', 'RL_NVPDT', 'RL_NVPKT',
+                'RL_NVTCHC', 'RL_NVCTSV', 'RL_TRDGV', 'RL_SV'
+              )
+            WHERE u.oracle_maintained = 'N'
+              AND (
+                r.granted_role IS NOT NULL
+                OR u.username NOT IN (SELECT grantee FROM dba_role_privs)
+              )
+            ORDER BY u.username
+        """;
+
 
         connect = DatabaseConnection.getConnection();
 

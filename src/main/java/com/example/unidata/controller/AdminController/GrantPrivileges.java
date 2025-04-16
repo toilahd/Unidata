@@ -42,19 +42,19 @@ public class GrantPrivileges implements Initializable {
     }
 
     public void onUserRoleManagement(ActionEvent event) {
-        loadScene("/com/example/unidata/user_management.fxml", "User/Role Management - ADMIN");
+        loadScene("/com/example/unidata/PhanHe1/user_management.fxml", "User/Role Management - ADMIN");
     }
 
     public void onUserRoleList(ActionEvent event) {
-        loadScene("/com/example/unidata/user_role_list.fxml", "User/Role List - ADMIN");
+        loadScene("/com/example/unidata/PhanHe1/user_role_list.fxml", "User/Role List - ADMIN");
     }
 
     public void onRevokePrivileges(ActionEvent event) {
-        loadScene("/com/example/unidata/revoke_privileges.fxml", "Revoke Privileges - ADMIN");
+        loadScene("/com/example/unidata/PhanHe1/revoke_privileges.fxml", "Revoke Privileges - ADMIN");
     }
 
     public void onViewPrivileges(ActionEvent event) {
-        loadScene("/com/example/unidata/view_privileges.fxml", "View Privileges - ADMIN");
+        loadScene("/com/example/unidata/PhanHe1/view_privileges.fxml", "View Privileges - ADMIN");
     }
 
 

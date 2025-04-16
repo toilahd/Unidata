@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -73,23 +72,23 @@ public class UserManagement implements Initializable {
     }
 
     public void onUserRoleList(ActionEvent event) {
-        loadScene("/com/example/unidata/user_role_list.fxml", "User/Role List - ADMIN");
+        loadScene("/com/example/unidata/PhanHe1/user_role_list.fxml", "User/Role List - ADMIN");
     }
 
     public void onGrantPrivileges(ActionEvent event) {
-        loadScene("/com/example/unidata/grant_privileges.fxml", "Grant Privileges - ADMIN");
+        loadScene("/com/example/unidata/PhanHe1/grant_privileges.fxml", "Grant Privileges - ADMIN");
     }
 
     public void onRevokePrivileges(ActionEvent event) {
-        loadScene("/com/example/unidata/revoke_privileges.fxml", "Revoke Privileges - ADMIN");
+        loadScene("/com/example/unidata/PhanHe1/revoke_privileges.fxml", "Revoke Privileges - ADMIN");
     }
 
     public void onViewPrivileges(ActionEvent event) {
-        loadScene("/com/example/unidata/view_privileges.fxml", "View Privileges - ADMIN");
+        loadScene("/com/example/unidata/PhanHe1/view_privileges.fxml", "View Privileges - ADMIN");
     }
 
     public void onRoleManagement(ActionEvent event) {
-        loadScene("/com/example/unidata/role_management.fxml", "User/Role Management - ADMIN");
+        loadScene("/com/example/unidata/PhanHe1/role_management.fxml", "User/Role Management - ADMIN");
     }
     // Create user action
     @FXML

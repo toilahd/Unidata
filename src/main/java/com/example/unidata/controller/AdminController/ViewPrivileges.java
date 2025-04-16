@@ -1,5 +1,4 @@
 package com.example.unidata.controller.AdminController;
-import com.example.unidata.DatabaseConnection;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -44,19 +43,19 @@ public class ViewPrivileges implements Initializable {
     }
 
     public void onUserRoleManagement(ActionEvent event) {
-        loadScene("/com/example/unidata/user_management.fxml", "User/Role Management - ADMIN");
+        loadScene("/com/example/unidata/PhanHe1/user_management.fxml", "User/Role Management - ADMIN");
     }
 
     public void onUserRoleList(ActionEvent event) {
-        loadScene("/com/example/unidata/user_role_list.fxml", "User/Role List - ADMIN");
+        loadScene("/com/example/unidata/PhanHe1/user_role_list.fxml", "User/Role List - ADMIN");
     }
 
     public void onGrantPrivileges(ActionEvent event) {
-        loadScene("/com/example/unidata/grant_privileges.fxml", "Grant Privileges - ADMIN");
+        loadScene("/com/example/unidata/PhanHe1/grant_privileges.fxml", "Grant Privileges - ADMIN");
     }
 
     public void onRevokePrivileges(ActionEvent event) {
-        loadScene("/com/example/unidata/revoke_privileges.fxml", "Revoke Privileges - ADMIN");
+        loadScene("/com/example/unidata/PhanHe1/revoke_privileges.fxml", "Revoke Privileges - ADMIN");
     }
 
 

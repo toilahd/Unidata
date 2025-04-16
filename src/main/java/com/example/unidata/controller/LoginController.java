@@ -126,7 +126,7 @@ public class LoginController implements Initializable {
         String fxmlFile;
         switch (role.toLowerCase()) {
             case "dba":
-                fxmlFile = "/com/example/unidata/dashboard.fxml";
+                fxmlFile = "/com/example/unidata/PhanHe1/dashboard.fxml";
                 break;
             case "teacher":
                 fxmlFile = "/com/example/unidata/teacher.fxml";

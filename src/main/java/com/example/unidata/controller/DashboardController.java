@@ -6,15 +6,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ResourceBundle;
 
 import com.example.unidata.DatabaseConnection;
@@ -53,23 +48,23 @@ public class DashboardController implements Initializable {
     }
 
     public void onUserRoleManagement(ActionEvent event) {
-        loadScene("/com/example/unidata/user_management.fxml", "User/Role Management - ADMIN");
+        loadScene("/com/example/unidata/PhanHe1/user_management.fxml", "User/Role Management - ADMIN");
     }
 
     public void onUserRoleList(ActionEvent event) {
-        loadScene("/com/example/unidata/user_role_list.fxml", "User/Role List - ADMIN");
+        loadScene("/com/example/unidata/PhanHe1/user_role_list.fxml", "User/Role List - ADMIN");
     }
 
     public void onGrantPrivileges(ActionEvent event) {
-        loadScene("/com/example/unidata/grant_privileges.fxml", "Grant Privileges - ADMIN");
+        loadScene("/com/example/unidata/PhanHe1/grant_privileges.fxml", "Grant Privileges - ADMIN");
     }
 
     public void onRevokePrivileges(ActionEvent event) {
-        loadScene("/com/example/unidata/revoke_privileges.fxml", "Revoke Privileges - ADMIN");
+        loadScene("/com/example/unidata/PhanHe1/revoke_privileges.fxml", "Revoke Privileges - ADMIN");
     }
 
     public void onViewPrivileges(ActionEvent event) {
-        loadScene("/com/example/unidata/view_privileges.fxml", "View Privileges - ADMIN");
+        loadScene("/com/example/unidata/PhanHe1/view_privileges.fxml", "View Privileges - ADMIN");
     }
 
 
