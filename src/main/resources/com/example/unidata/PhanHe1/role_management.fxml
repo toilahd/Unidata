@@ -39,9 +39,9 @@
                 <TableColumn fx:id="addAccounts_col_role" prefWidth="100" text="Action" />
             </columns>
         </TableView>
-        <TextField layoutX="534.0" layoutY="464.0" prefHeight="26.0" prefWidth="183.0" />
+        <TextField fx:id="roleNameField" onAction="#onCreateRole" layoutX="534.0" layoutY="464.0" prefHeight="26.0" prefWidth="183.0" />
         <Text layoutX="459.0" layoutY="481.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Role name:" />
-        <Button layoutX="305.0" layoutY="460.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="110.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 15;" text="CREATE" />
+        <Button fx:id="createRoleButton" onAction="#onCreateRole" layoutX="305.0" layoutY="460.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="110.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 15;" text="CREATE" />
 
     </children>
 </AnchorPane>

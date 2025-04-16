@@ -11,22 +11,41 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import com.example.unidata.util.RoleData;
+import javafx.scene.control.*;
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
+import java.sql.*;
+import com.example.unidata.DatabaseConnection;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 
 public class RoleManagement implements Initializable {
     @FXML
     private Button btnGrantPrivileges;
-
     @FXML
     private Button btnRevokePrivileges;
-
     @FXML
     private Button btnSignOut;
-
     @FXML
     private Button btnUserRoleList;
-
     @FXML
     private Button btnViewPrivileges;
+
+    @FXML
+    private TableView<RoleData> addAccounts_tableView;
+    @FXML
+    private TableColumn<RoleData, Integer> addAccounts_col_id;
+    @FXML
+    private TableColumn<RoleData, String> addAccounts_col_username;
+    @FXML
+    private TableColumn<RoleData, Void> addAccounts_col_role;
+
+    @FXML
+    private TextField roleNameField; // trỏ vào TextField bạn dùng nhập tên role mới
+    @FXML
+    private Button createRoleButton;
 
 
     public void onSignOut(ActionEvent event) {
@@ -74,9 +93,95 @@ public class RoleManagement implements Initializable {
         }
     }
 
+    private void loadRolesFromDB() {
+        ObservableList<RoleData> roles = FXCollections.observableArrayList();
+        String sql = """
+        SELECT role
+        FROM dba_roles
+        WHERE role LIKE 'RL_%'
+        ORDER BY role
+        """;
+
+        try {
+            Connection conn = DatabaseConnection.getConnection();
+            ResultSet rs = conn.prepareStatement(sql).executeQuery();
+
+            int id = 1;
+            while (rs.next()) {
+                String roleName = rs.getString("role");
+                roles.add(new RoleData(id++, roleName));
+            }
+
+            addAccounts_tableView.setItems(roles);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setupTableView() {
+        addAccounts_col_id.setCellValueFactory(cell -> new SimpleIntegerProperty(cell.getValue().getId()).asObject());
+        addAccounts_col_username.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getRoleName()));
+
+        addAccounts_col_role.setCellFactory(col -> new TableCell<>() {
+            private final Button btn = new Button("Delete");
+
+            {
+                btn.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white;");
+                btn.setOnAction(event -> {
+                    RoleData role = getTableView().getItems().get(getIndex());
+                    deleteRole(role.getRoleName());
+                    loadRolesFromDB(); // refresh
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(btn);
+                }
+            }
+        });
+    }
+
+    // xoa role
+    private void deleteRole(String roleName) {
+        String sql = "DROP ROLE " + roleName;
+        try{
+            Connection connect = DatabaseConnection.getConnection();
+            connect.prepareStatement(sql).executeQuery();
+
+            System.out.println("Role deleted: " + roleName);
+            loadRolesFromDB();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    // them role
+    @FXML
+    private void onCreateRole() {
+        String newRole = roleNameField.getText().trim();
+        if (newRole.isEmpty()) return;
+
+        String sql = "CREATE ROLE " + "RL_" + newRole;
+        try{
+            Connection connect = DatabaseConnection.getConnection();
+            connect.prepareStatement(sql).executeQuery();
+            roleNameField.clear();
+            loadRolesFromDB();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        setupTableView();
+        loadRolesFromDB();
 
+        createRoleButton.setOnAction(event -> onCreateRole());
     }
+
 }
