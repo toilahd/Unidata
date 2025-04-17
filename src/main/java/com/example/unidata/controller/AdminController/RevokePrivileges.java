@@ -124,12 +124,24 @@ public class RevokePrivileges implements Initializable {
                     SELECT username
                     FROM dba_users
                     WHERE account_status = 'OPEN'
+                    AND (
+                        username LIKE 'DBA_%' OR
+                        username LIKE 'GV_%' OR
+                        username LIKE 'NVCB_%' OR
+                        username LIKE 'NVCTSV_%' OR
+                        username LIKE 'NVPDT_%' OR
+                        username LIKE 'NVPKT_%' OR
+                        username LIKE 'NVTCHC_%' OR
+                        username LIKE 'SV_%' OR
+                        username LIKE 'TRGDV_%'
+                    )
                     ORDER BY username
                     """;
             } else { // ROLE
                 sql = """
                     SELECT role
                     FROM dba_roles
+                    WHERE role LIKE 'RL_%'
                     ORDER BY role
                     """;
             }
@@ -231,10 +243,16 @@ public class RevokePrivileges implements Initializable {
             String sql = """
                 SELECT GRANTEE, PRIVILEGE, GRANTABLE, TABLE_NAME
                 FROM DBA_TAB_PRIVS
-                WHERE GRANTEE NOT IN (
-                    'SYS', 'SYSTEM', 'OUTLN', 'XS$NULL', 'MDSYS', 'ORDSYS',
-                    'CTXSYS', 'DBSNMP', 'SYSMAN', 'APEX_PUBLIC_USER',
-                    'ANONYMOUS', 'XDB', 'DBA_MANAGER', 'SYSRAC'
+                WHERE (
+                    GRANTEE LIKE 'DBA_%' OR
+                    GRANTEE LIKE 'GV_%' OR
+                    GRANTEE LIKE 'NVCB_%' OR
+                    GRANTEE LIKE 'NVCTSV_%' OR
+                    GRANTEE LIKE 'NVPDT_%' OR
+                    GRANTEE LIKE 'NVPKT_%' OR
+                    GRANTEE LIKE 'NVTCHC_%' OR
+                    GRANTEE LIKE 'SV_%' OR
+                    GRANTEE LIKE 'TRGDV_%'
                 )
                 ORDER BY GRANTEE, PRIVILEGE
                 """;

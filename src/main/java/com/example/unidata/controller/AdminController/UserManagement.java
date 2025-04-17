@@ -202,13 +202,19 @@ public class UserManagement implements Initializable {
 
             // Get all users except default/system ones
             String sql = """
-                SELECT username 
-                FROM dba_users 
+                SELECT username
+                FROM dba_users
                 WHERE account_status = 'OPEN'
-                AND username NOT IN (
-                    'SYS', 'SYSTEM', 'OUTLN', 'XS$NULL', 'MDSYS', 'ORDSYS',
-                    'CTXSYS', 'DBSNMP', 'SYSMAN', 'APEX_PUBLIC_USER',
-                    'ANONYMOUS', 'XDB', 'DBA_MANAGER', 'SYSRAC'
+                AND (
+                    username LIKE 'DBA_%' OR
+                    username LIKE 'GV_%' OR
+                    username LIKE 'NVCB_%' OR
+                    username LIKE 'NVCTSV_%' OR
+                    username LIKE 'NVPDT_%' OR
+                    username LIKE 'NVPKT_%' OR
+                    username LIKE 'NVTCHC_%' OR
+                    username LIKE 'SV_%' OR
+                    username LIKE 'TRGDV_%'
                 )
                 ORDER BY username
                 """;
