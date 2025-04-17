@@ -96,10 +96,10 @@ public class RoleManagement implements Initializable {
     private void loadRolesFromDB() {
         ObservableList<RoleData> roles = FXCollections.observableArrayList();
         String sql = """
-        SELECT role
-        FROM dba_roles
-        WHERE role LIKE 'RL_%'
-        ORDER BY role
+            SELECT role
+            FROM dba_roles
+            WHERE role LIKE 'RL_%'
+            ORDER BY role
         """;
 
         try {
@@ -148,20 +148,37 @@ public class RoleManagement implements Initializable {
 
     // xoa role
     private void deleteRole(String roleName) {
+        Alert alert;
+        alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Message");
+        alert.setHeaderText(null);
+
         String sql = "DROP ROLE " + roleName;
         try{
             Connection connect = DatabaseConnection.getConnection();
             connect.prepareStatement(sql).executeQuery();
 
             System.out.println("Role deleted: " + roleName);
+
+            alert.setContentText("Role " + roleName + " is deleted successfully!");
+            alert.showAndWait();
+
             loadRolesFromDB();
         } catch (SQLException e) {
+            alert.setContentText("There is something wrong");
+            alert.showAndWait();
+
             e.printStackTrace();
         }
     }
     // them role
     @FXML
     private void onCreateRole() {
+        Alert alert;
+        alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Message");
+        alert.setHeaderText(null);
+
         String newRole = roleNameField.getText().trim();
         if (newRole.isEmpty()) return;
 
@@ -170,8 +187,15 @@ public class RoleManagement implements Initializable {
             Connection connect = DatabaseConnection.getConnection();
             connect.prepareStatement(sql).executeQuery();
             roleNameField.clear();
+
+            alert.setContentText("Created role " + newRole + " successfully!");
+            alert.showAndWait();
+
             loadRolesFromDB();
         } catch (SQLException e) {
+            alert.setContentText("Role " + newRole + " is existing!");
+            alert.showAndWait();
+
             e.printStackTrace();
         }
     }

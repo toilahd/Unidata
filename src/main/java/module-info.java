@@ -5,6 +5,7 @@ module com.example.unidata {
     requires java.desktop;
     requires com.oracle.database.jdbc;
     requires javafx.base;
+    requires java.management;
 
     opens com.example.unidata to javafx.fxml;
     exports com.example.unidata;
