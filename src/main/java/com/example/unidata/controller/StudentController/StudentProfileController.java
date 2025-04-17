@@ -1,33 +1,75 @@
-package com.example.unidata.controller;
+package com.example.unidata.controller.StudentController;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 
 public class StudentProfileController {
-    @FXML private Label lblStudentId;
-    @FXML private Label lblFullName;
-    @FXML private Label lblGender;
-    @FXML private Label lblDOB;
-    @FXML private Label lblAddress;
-    @FXML private Label lblPhone;
-    @FXML private Label lblFaculty;
-    @FXML private Label lblStatus;
 
     @FXML
-    private void initialize() {
-        // Here you would load data from your database
-        // For now, we use the placeholder data in the FXML
-        
-        // Example: If you had a StudentService to get the current student
-        // Student student = studentService.getCurrentStudent();
-        // lblStudentId.setText(student.getId());
-        // lblFullName.setText(student.getFullName());
-        // etc...
-    }
-    
+    private Label DIACHI;
+
     @FXML
-    private void onEditProfile() {
-        System.out.println("Edit profile clicked");
-        // Implement edit functionality
+    private Label DT;
+
+    @FXML
+    private Label HOTEN;
+
+    @FXML
+    private Label KHOA;
+
+    @FXML
+    private Label MaSV;
+
+    @FXML
+    private Label NGSINH;
+
+    @FXML
+    private Label PHAI;
+
+    @FXML
+    private Label TINHTRANG;
+
+    @FXML
+    private Button btnCourseRegistration;
+
+    @FXML
+    private Button btnSignOut;
+
+    @FXML
+    private Button btnStudyResults;
+
+    @FXML
+    private Button btnUserProfile;
+
+    @FXML
+    private AnchorPane mainContentPane;
+
+    @FXML
+    void onCourseRegistration(ActionEvent event) {
+
     }
+
+    @FXML
+    void onEditProfile(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onProfile(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onSignOut(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onStudyResults(ActionEvent event) {
+
+    }
+
 }

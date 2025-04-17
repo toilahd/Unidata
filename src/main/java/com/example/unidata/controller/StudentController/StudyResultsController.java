@@ -1,60 +1,96 @@
-package com.example.unidata.controller;
+package com.example.unidata.controller.StudentController;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.layout.AnchorPane;
 
 public class StudyResultsController {
-    @FXML private ComboBox<String> semesterComboBox;
-    @FXML private ComboBox<String> yearComboBox;
-    @FXML private TableView<CourseGrade> gradesTable;
-    @FXML private TableColumn<CourseGrade, String> colCode;
-    @FXML private TableColumn<CourseGrade, String> colName;
-    @FXML private TableColumn<CourseGrade, Integer> colCredits;
-    @FXML private TableColumn<CourseGrade, Double> colPractice;
-    @FXML private TableColumn<CourseGrade, Double> colMidterm;
-    @FXML private TableColumn<CourseGrade, Double> colFinal;
-    @FXML private TableColumn<CourseGrade, Double> colAverage;
-    
-    @FXML private Label lblTotalCredits;
-    @FXML private Label lblSemesterGPA;
-    @FXML private Label lblAccumulatedCredits;
-    @FXML private Label lblCumulativeGPA;
 
     @FXML
-    private void initialize() {
-        // Initialize comboboxes
-        semesterComboBox.getItems().addAll("Học kỳ 1", "Học kỳ 2", "Học kỳ 3");
-        yearComboBox.getItems().addAll("2024-2025", "2025-2026", "2026-2027");
-        
-        // Set up table columns
-        colCode.setCellValueFactory(new PropertyValueFactory<>("code"));
-        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colCredits.setCellValueFactory(new PropertyValueFactory<>("credits"));
-        colPractice.setCellValueFactory(new PropertyValueFactory<>("practiceGrade"));
-        colMidterm.setCellValueFactory(new PropertyValueFactory<>("midtermGrade"));
-        colFinal.setCellValueFactory(new PropertyValueFactory<>("finalGrade"));
-        colAverage.setCellValueFactory(new PropertyValueFactory<>("averageGrade"));
-    }
-    
+    private Button btnCourseRegistration;
+
     @FXML
-    private void onViewGrades() {
-        System.out.println("View grades clicked");
-        // Here you would query grades based on selected semester and year
-        // and update the summary statistics
+    private Button btnSignOut;
+
+    @FXML
+    private Button btnStudyResults;
+
+    @FXML
+    private Button btnUserProfile;
+
+    @FXML
+    private TableColumn<?, ?> colAverage;
+
+    @FXML
+    private TableColumn<?, ?> colCode;
+
+    @FXML
+    private TableColumn<?, ?> colCredits;
+
+    @FXML
+    private TableColumn<?, ?> colFinal;
+
+    @FXML
+    private TableColumn<?, ?> colMidterm;
+
+    @FXML
+    private TableColumn<?, ?> colName;
+
+    @FXML
+    private TableColumn<?, ?> colPractice;
+
+    @FXML
+    private TableView<?> gradesTable;
+
+    @FXML
+    private Label lblAccumulatedCredits;
+
+    @FXML
+    private Label lblCumulativeGPA;
+
+    @FXML
+    private Label lblSemesterGPA;
+
+    @FXML
+    private Label lblTotalCredits;
+
+    @FXML
+    private AnchorPane mainContentPane;
+
+    @FXML
+    private ComboBox<?> semesterComboBox;
+
+    @FXML
+    private ComboBox<?> yearComboBox;
+
+    @FXML
+    void onCourseRegistration(ActionEvent event) {
+
     }
-    
-    // CourseGrade model class
-    public static class CourseGrade {
-        private String code;
-        private String name;
-        private int credits;
-        private double practiceGrade;
-        private double midtermGrade;
-        private double finalGrade;
-        private double averageGrade;
-        
-        // Constructor, getters, setters
-        // ...
+
+    @FXML
+    void onProfile(ActionEvent event) {
+
     }
+
+    @FXML
+    void onSignOut(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onStudyResults(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onViewGrades(ActionEvent event) {
+
+    }
+
 }

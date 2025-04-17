@@ -173,7 +173,7 @@ BEGIN
       object_name    => '?',
       policy_name    => 'sinhvien_insert_delete_security_policy',
       function_name  => 'f_sinhvien_insert_delete_security',
-      statement_types => 'INSERT, DELETE',
+      statement_types => 'ZINSERT, DELETE',
       update_check    => TRUE,
       policy_type     => DBMS_RLS.STATIC_POLICY
    );

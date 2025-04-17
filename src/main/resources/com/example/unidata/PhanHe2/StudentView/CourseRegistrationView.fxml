@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane accessibleRole="BUTTON" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="42.0" prefWidth="900.0" style="-fx-background-color: #5dade2;">
+         <children>
+            <Button fx:id="btnSignOut" alignment="CENTER" layoutX="788.0" layoutY="6.0" mnemonicParsing="false" onAction="#onSignOut" prefHeight="30.0" prefWidth="103.0" style="-fx-background-color: transparent; -fx-text-fill: black; -fx-border-color: transparent; -fx-background-insets: 0; -fx-padding: 0;" text="Sign Out" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="42.0" prefHeight="558.0" prefWidth="200.0" style="-fx-background-color: #d6eaf8;">
+         <children>
+            <Button fx:id="btnUserProfile" layoutX="8.0" layoutY="101.0" mnemonicParsing="false" onAction="#onProfile" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6;                            -fx-background-radius: 6; -fx-font-size: 15;" text="Thông tin cá nhân" textFill="#323442" />
+            <Button fx:id="btnCourseRegistration" layoutX="8.0" layoutY="163.0" mnemonicParsing="false" onAction="#onCourseRegistration" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6;                            -fx-background-radius: 6; -fx-font-size: 15;" text="Đăng ký học phần" />
+            <Button fx:id="btnStudyResults" layoutX="8.0" layoutY="224.0" mnemonicParsing="false" onAction="#onStudyResults" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6;                            -fx-background-radius: 6; -fx-font-size: 15;" text="Kết quả học tập" />
+            <ImageView fitHeight="50.0" fitWidth="30.0" layoutX="15.0" layoutY="10.0" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../icon/school.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="48.0" layoutY="4.0" text="Portal">
+               <font>
+                  <Font name="Arial Bold" size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="200.0" layoutY="43.0" prefHeight="556.0" prefWidth="634.0">
+         <children>
+            <VBox fillWidth="false" layoutY="0.8" prefHeight="535.0" prefWidth="678.0" spacing="15" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="-64.0" AnchorPane.topAnchor="1.0">
+               <children>
+                  <Label style="-fx-font-size: 24; -fx-font-weight: bold;" text="Đăng ký học phần" />
+                  <HBox spacing="10">
+                     <children>
+                        <ComboBox fx:id="semesterComboBox1" promptText="Chọn học kỳ" />
+                        <ComboBox fx:id="yearComboBox1" promptText="Chọn năm học" />
+                        <Button onAction="#onSearch" text="Tìm kiếm" />
+                     </children>
+                  </HBox>
+                  <TableView fx:id="coursesTable" VBox.vgrow="ALWAYS">
+                     <columns>
+                        <TableColumn fx:id="colCode1" prefWidth="80" text="Mã HP" />
+                        <TableColumn fx:id="colName1" prefWidth="200" text="Tên học phần" />
+                        <TableColumn fx:id="colCredits1" prefWidth="80" text="Số tín chỉ" />
+                        <TableColumn fx:id="colLectures" prefWidth="80" text="Số tiết LT" />
+                        <TableColumn fx:id="colLabs" prefWidth="80" text="Số tiết TH" />
+                        <TableColumn fx:id="colRegister" prefWidth="80" text="Đăng ký" />
+                     </columns>
+                  </TableView>
+                  <HBox alignment="CENTER_RIGHT" spacing="10">
+                     <children>
+                        <Button onAction="#onRegister" text="Đăng ký" />
+                        <Button onAction="#onUnregister" text="Hủy đăng ký" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
