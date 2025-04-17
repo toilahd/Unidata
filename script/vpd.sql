@@ -1,6 +1,56 @@
 -- Câu 3: QUAN HE SINH VIEN - CHINH SACH VPD 
 
 
+-- Xóa policy cũ (nếu tồn tại) trước khi tạo mới
+BEGIN
+  DBMS_RLS.DROP_POLICY(
+    object_schema => 'DBA_MANAGER',
+    object_name   => 'SINHVIEN',
+    policy_name   => 'sinhvien_security_policy'
+  );
+EXCEPTION
+  WHEN OTHERS THEN
+    NULL;
+END;
+/
+
+BEGIN
+  DBMS_RLS.DROP_POLICY(
+    object_schema => 'DBA_MANAGER',
+    object_name   => 'SINHVIEN',
+    policy_name   => 'sinhvien_update_security_policy'
+  );
+EXCEPTION
+  WHEN OTHERS THEN
+    NULL;
+END;
+/
+
+BEGIN
+  DBMS_RLS.DROP_POLICY(
+    object_schema => 'DBA_MANAGER',
+    object_name   => 'SINHVIEN',
+    policy_name   => 'sinhvien_insert_security_policy'
+  );
+EXCEPTION
+  WHEN OTHERS THEN
+    NULL;
+END;
+/
+
+BEGIN
+  DBMS_RLS.DROP_POLICY(
+    object_schema => 'DBA_MANAGER',
+    object_name   => 'SINHVIEN',
+    policy_name   => 'sinhvien_delete_security_policy'
+  );
+EXCEPTION
+  WHEN OTHERS THEN
+    NULL;
+END;
+/
+
+
 CREATE OR REPLACE FUNCTION f_sinhvien_security (
    p_schema VARCHAR2,
    p_object VARCHAR2
@@ -44,20 +94,18 @@ BEGIN
    RETURN v_predicate;
 END;
 /
-
 -- Tạo policy áp dụng cho truy vấn SELECT
 BEGIN
    DBMS_RLS.ADD_POLICY (
-      object_schema => '?',
-      object_name    => '?',
-      policy_name    => 'sinhvien_security_policy',
-      function_name  => 'f_sinhvien_security',
-      statement_types => 'SELECT',
-      update_check    => TRUE,
-      policy_type     => DBMS_RLS.STATIC_POLICY
+      object_schema    => 'DBA_MANAGER',
+      object_name      => 'SINHVIEN',
+      policy_name      => 'sinhvien_security_policy',
+      function_schema  => 'DBA_MANAGER',
+      policy_function  => 'f_sinhvien_security',
+      statement_types  => 'SELECT'
    );
 END;
-
+/
 
 CREATE OR REPLACE FUNCTION f_sinhvien_update_security (
    p_schema VARCHAR2,
@@ -94,16 +142,15 @@ END;
 -- Tạo policy áp dụng cho truy vấn UPDATE
 BEGIN
    DBMS_RLS.ADD_POLICY (
-      object_schema => '?',
-      object_name    => '?',
+      object_schema => 'DBA_MANAGER',
+      object_name    => 'SINHVIEN',
       policy_name    => 'sinhvien_update_security_policy',
-      function_name  => 'f_sinhvien_update_security',
-      statement_types => 'UPDATE',
-      update_check    => TRUE,
-      policy_type     => DBMS_RLS.STATIC_POLICY
+      function_schema  => 'DBA_MANAGER',
+      policy_function  => 'f_sinhvien_update_security',
+      statement_types => 'UPDATE'
    );
 END;
-
+/
 CREATE OR REPLACE TRIGGER trg_sinhvien_update_columns 
 BEFORE UPDATE ON SINHVIEN
 FOR EACH ROW
@@ -139,9 +186,11 @@ BEGIN
       END IF;
    END IF;
 END;
+
+SELECT * FROM v$version;
 /
--- Policy Function for INSERT/DELETE
-CREATE OR REPLACE FUNCTION f_sinhvien_insert_delete_security (
+-- Policy Function for INSERT
+CREATE OR REPLACE FUNCTION f_sinhvien_insert_security (
    p_schema VARCHAR2,
    p_object VARCHAR2
 ) RETURN VARCHAR2 IS
@@ -166,15 +215,58 @@ BEGIN
 END;
 /
 
--- Tạo policy áp dụng cho INSERT/DELETE
+-- Tạo policy áp dụng cho INSERT
 BEGIN
    DBMS_RLS.ADD_POLICY (
-      object_schema => '?',
-      object_name    => '?',
-      policy_name    => 'sinhvien_insert_delete_security_policy',
-      function_name  => 'f_sinhvien_insert_delete_security',
-      statement_types => 'ZINSERT, DELETE',
-      update_check    => TRUE,
-      policy_type     => DBMS_RLS.STATIC_POLICY
+      object_schema    => 'DBA_MANAGER',
+      object_name      => 'SINHVIEN',
+      policy_name      => 'sinhvien_insert_security_policy',
+      function_schema  => 'DBA_MANAGER',
+      policy_function  => 'f_sinhvien_insert_security',
+      statement_types  => 'INSERT',
+      update_check => true
    );
 END;
+/
+
+
+-- Policy Function for DELETE
+CREATE OR REPLACE FUNCTION f_sinhvien_delete_security (
+   p_schema VARCHAR2,
+   p_object VARCHAR2
+) RETURN VARCHAR2 IS
+   v_user VARCHAR2(30);
+   v_role VARCHAR2(30);
+BEGIN
+   SELECT USER INTO v_user FROM DUAL;
+
+   -- Determine role
+   BEGIN
+      SELECT VAITRO INTO v_role FROM NHANVIEN WHERE MANLD = v_user;
+   EXCEPTION
+      WHEN NO_DATA_FOUND THEN
+         v_role := NULL;
+   END;
+
+   IF v_role = 'NV PCTSV' THEN
+      RETURN '1=1';
+   ELSE
+      RETURN '1=0';
+   END IF;
+END;
+/
+
+
+-- Tạo policy áp dụng cho DELETE
+BEGIN
+   DBMS_RLS.ADD_POLICY (
+      object_schema    => 'DBA_MANAGER',
+      object_name      => 'SINHVIEN',
+      policy_name      => 'sinhvien_delete_security_policy',
+      function_schema  => 'DBA_MANAGER',
+      policy_function  => 'f_sinhvien_delete_security',
+      statement_types  => 'DELETE'
+   );
+END;
+/
+-- Câu 4: QUAN HE DANG KY - CHINH SACH VPD
