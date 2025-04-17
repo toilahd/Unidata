@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.SVGPath?>
 
-<AnchorPane accessibleRole="BUTTON" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.unidata.controller.DashboardController">
+<AnchorPane accessibleRole="BUTTON" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.unidata.controller.AdminController.DashboardController">
    <children>
       <AnchorPane prefHeight="42.0" prefWidth="800.0" style="-fx-background-color: #5dade2;">
          <children>

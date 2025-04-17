@@ -1,4 +1,4 @@
-package com.example.unidata.util;
+package com.example.unidata.controller.AdminController.util;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleIntegerProperty;

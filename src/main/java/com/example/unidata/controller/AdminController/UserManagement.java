@@ -1,7 +1,7 @@
 package com.example.unidata.controller.AdminController;
 
 import com.example.unidata.DatabaseConnection;
-import com.example.unidata.util.UserData;
+import com.example.unidata.controller.AdminController.util.UserData;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
