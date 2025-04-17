@@ -1,8 +1,9 @@
-package com.example.unidata.controller;
+package com.example.unidata.controller.StudentController;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.CheckBoxTableCell;
 
 public class CourseRegistrationController {
     @FXML private ComboBox<String> semesterComboBox;

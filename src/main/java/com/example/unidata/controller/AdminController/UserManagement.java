@@ -207,7 +207,7 @@ public class UserManagement implements Initializable {
                 WHERE account_status = 'OPEN'
                 AND (
                     username LIKE 'DBA_%' OR
-                    username LIKE 'GV_%' OR
+                    username LIKE 'GV_%' OR 
                     username LIKE 'NVCB_%' OR
                     username LIKE 'NVCTSV_%' OR
                     username LIKE 'NVPDT_%' OR
