@@ -1,10 +1,9 @@
 package com.example.unidata.controller.AdminController;
 
 import com.example.unidata.DatabaseConnection;
-import com.example.unidata.util.RolePrivilege;
-import com.example.unidata.util.UserPrivilege;
+import com.example.unidata.controller.AdminController.util.RolePrivilege;
+import com.example.unidata.controller.AdminController.util.UserPrivilege;
 
-import javafx.beans.binding.ObjectExpression;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +19,6 @@ import javafx.collections.ObservableList;
 import javafx.beans.property.SimpleIntegerProperty;
 
 
-import javax.management.relation.Role;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;

@@ -1,4 +1,4 @@
-package com.example.unidata.controller;
+package com.example.unidata.controller.AdminController;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

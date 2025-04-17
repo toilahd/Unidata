@@ -16,6 +16,6 @@ module com.example.unidata {
     exports com.example.unidata.controller.AdminController;
     opens com.example.unidata.controller.AdminController to javafx.fxml;
 
-    exports com.example.unidata.util;
-    opens com.example.unidata.util to javafx.fxml;
+    exports com.example.unidata.controller.AdminController.util;
+    opens com.example.unidata.controller.AdminController.util to javafx.fxml;
 }

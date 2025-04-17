@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane accessibleRole="BUTTON" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.unidata.controller.DashboardController">
+<AnchorPane accessibleRole="BUTTON" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.unidata.controller.AdminController.DashboardController">
    <children>
       <!-- Header bar -->
       <AnchorPane prefHeight="42.0" prefWidth="900.0" style="-fx-background-color: #5dade2;">
@@ -25,7 +25,7 @@
       <!-- Sidebar menu -->
       <AnchorPane layoutY="42.0" prefHeight="558.0" prefWidth="200.0" style="-fx-background-color: #d6eaf8;">
          <children>
-            <Button fx:id="btnUserProfile" layoutX="8.0" layoutY="101.0" mnemonicParsing="false" onAction="#onProfile" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6;                            -fx-background-radius: 6; -fx-font-size: 15;" text="Thông tin cá nhân" textFill="#323442" />
+            <Button fx:id="btnUserProfile" layoutX="8.0" layoutY="101.0" mnemonicParsing="false" onAction="#onProfile" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #008000; -fx-text-fill: white; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 15;" text="Thông tin cá nhân" textFill="#323442" />
 
             <Button fx:id="btnCourseRegistration" layoutX="8.0" layoutY="163.0" mnemonicParsing="false" onAction="#onCourseRegistration" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6;                            -fx-background-radius: 6; -fx-font-size: 15;" text="Đăng ký học phần" />
 
