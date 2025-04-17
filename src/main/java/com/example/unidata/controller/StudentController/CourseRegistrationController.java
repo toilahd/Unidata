@@ -10,14 +10,15 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.CheckBoxTableCell;
 
+import java.sql.*;
+import com.example.unidata.DatabaseConnection;
+
 public class CourseRegistrationController {
 
     @FXML
     private Button btnCourseRegistration;
-
     @FXML
     private Button btnSignOut;
-
     @FXML
     private Button btnStudyResults;
 

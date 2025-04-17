@@ -110,7 +110,7 @@ public class RoleList implements Initializable {
                 WHERE u.oracle_maintained = 'N'
                   AND (
                     u.username LIKE 'DBA_%' OR
-                    u.username LIKE 'GV_%' OR\s
+                    u.username LIKE 'GV_%' OR
                     u.username LIKE 'NVCB_%' OR
                     u.username LIKE 'NVCTSV_%' OR
                     u.username LIKE 'NVPDT_%' OR

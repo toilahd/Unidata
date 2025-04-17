@@ -36,7 +36,7 @@ public class LoginController implements Initializable {
     private PreparedStatement prepare;
     private ResultSet result;
 
-    //CREATE DATABASE
+    // CREATE DATABASE
     public void onLogin() {
         Alert alert;
         String username = usernameField.getText();
@@ -115,10 +115,22 @@ public class LoginController implements Initializable {
     // Helper method to determine the user role
     private String determineUserRole(ArrayList<String> grantedRoles) {
         if (grantedRoles.contains("DBA")) {
-            return "DBA";
-        } else {
+            return "dba";
+        }
+        else if (grantedRoles.contains("RL_SV")) {
+            return "student";
+        }
+        // add next logic here
+        else {
             return "null"; // or another default role if applicable
         }
+    }
+    private Parent loadFXML(String path) throws IOException {
+        URL fxmlUrl = getClass().getResource(path);
+        if (fxmlUrl == null) {
+            throw new IOException("FXML file not found: " + path);
+        }
+        return FXMLLoader.load(fxmlUrl);
     }
 
     // Helper method to load the appropriate dashboard based on the role
@@ -132,7 +144,7 @@ public class LoginController implements Initializable {
                 fxmlFile = "/com/example/unidata/teacher.fxml";
                 break;
             case "student":
-                fxmlFile = "/com/example/unidata/student.fxml";
+                fxmlFile = "/com/example/unidata/PhanHe2/StudentView/StudentProfileView.fxml";
                 break;
             default:
                 fxmlFile = "/com/example/unidata/default.fxml"; // optional fallback
@@ -140,7 +152,7 @@ public class LoginController implements Initializable {
         }
 
         try {
-            Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
+            Parent root = loadFXML(fxmlFile);
             Stage stage = new Stage();
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -151,7 +163,7 @@ public class LoginController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Message");
             alert.setHeaderText(null);
-            alert.setContentText("Failed to load the dashboard. Please try again.");
+            alert.setContentText("Failed to load the scene. Please try again.");
             alert.showAndWait();
         }
     }
