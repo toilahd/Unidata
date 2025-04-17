@@ -99,20 +99,31 @@ public class RoleList implements Initializable {
         ObservableList<AccountData> listAccounts = FXCollections.observableArrayList();
 
         String sql = """
-            SELECT u.username, r.granted_role
-            FROM all_users u
-            LEFT JOIN dba_role_privs r
-              ON u.username = r.grantee
-              AND r.granted_role IN (
-                'RL_NVCB', 'RL_GV', 'RL_NVPDT', 'RL_NVPKT',
-                'RL_NVTCHC', 'RL_NVCTSV', 'RL_TRDGV', 'RL_SV'
-              )
-            WHERE u.oracle_maintained = 'N'
-              AND (
-                r.granted_role IS NOT NULL
-                OR u.username NOT IN (SELECT grantee FROM dba_role_privs)
-              )
-            ORDER BY u.username
+        SELECT u.username, r.granted_role
+                FROM all_users u
+                LEFT JOIN dba_role_privs r
+                  ON u.username = r.grantee
+                  AND r.granted_role IN (
+                    'RL_NVCB', 'RL_GV', 'RL_NVPDT', 'RL_NVPKT',
+                    'RL_NVTCHC', 'RL_NVCTSV', 'RL_TRDGV', 'RL_SV'
+                  )
+                WHERE u.oracle_maintained = 'N'
+                  AND (
+                    u.username LIKE 'DBA_%' OR
+                    u.username LIKE 'GV_%' OR\s
+                    u.username LIKE 'NVCB_%' OR
+                    u.username LIKE 'NVCTSV_%' OR
+                    u.username LIKE 'NVPDT_%' OR
+                    u.username LIKE 'NVPKT_%' OR
+                    u.username LIKE 'NVTCHC_%' OR
+                    u.username LIKE 'SV_%' OR
+                    u.username LIKE 'TRGDV_%'
+                  )
+                  AND (
+                    r.granted_role IS NOT NULL
+                    OR u.username NOT IN (SELECT grantee FROM dba_role_privs)
+                  )
+                ORDER BY u.username
         """;
 
 

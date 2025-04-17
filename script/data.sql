@@ -174,14 +174,6 @@ VALUES ('SV009', 'MM001', 7.0, 6.5, 7.0, 6.8);
 INSERT INTO DANGKY (MASV, MAMM, DIEMTH, DIEMQT, DIEMCK, DIEMTK)
 VALUES ('SV009', 'MM003', 8.0, 7.5, 8.0, 7.8);
 
--- Sample data for ACCOUNT (Users)
-INSERT INTO ACCOUNT (ID, username, password, VAITRO) VALUES (2, 'gv001', 'password123', 'GV');
-INSERT INTO ACCOUNT (ID, username, password, VAITRO) VALUES (3, 'gv002', 'password123', 'GV');
-INSERT INTO ACCOUNT (ID, username, password, VAITRO) VALUES (4, 'gv003', 'password123', 'TRDĐV');
-INSERT INTO ACCOUNT (ID, username, password, VAITRO) VALUES (5, 'nv001', 'password123', 'NV PDT');
-INSERT INTO ACCOUNT (ID, username, password, VAITRO) VALUES (6, 'nv002', 'password123', 'NV PKT');
-INSERT INTO ACCOUNT (ID, username, password, VAITRO) VALUES (7, 'nv003', 'password123', 'TRDĐV');
-
 -- Commit the changes
 COMMIT;
 
@@ -196,6 +188,4 @@ SELECT 'HOCPHAN', COUNT(*) FROM HOCPHAN
 UNION ALL
 SELECT 'MOMON', COUNT(*) FROM MOMON
 UNION ALL
-SELECT 'DANGKY', COUNT(*) FROM DANGKY
-UNION ALL
-SELECT 'ACCOUNT', COUNT(*) FROM ACCOUNT;
+SELECT 'DANGKY', COUNT(*) FROM DANGKY;
