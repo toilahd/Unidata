@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.unidata.controller.TeacherController.TeacherProfileController">
    <children>
       <AnchorPane prefHeight="42.0" prefWidth="907.0" style="-fx-background-color: #5dade2;">
@@ -24,7 +23,7 @@
          <children>
             <Button fx:id="btnUserProfile" layoutX="8.0" layoutY="101.0" mnemonicParsing="false" onAction="#onProfile" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #008000; -fx-text-fill: white; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 15;" text="Thông tin cá nhân" textFill="#323442" />
             <Button fx:id="btnClasses" layoutX="8.0" layoutY="163.0" mnemonicParsing="false" onAction="#onClassAssigned" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6;-fx-background-radius: 6; -fx-font-size: 15;" text="Phân công giảng dạy" />
-            <Button fx:id="btnStudents" layoutX="8.0" layoutY="224.0" mnemonicParsing="false" onAction="#onStudentList" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6;-fx-background-radius: 6; -fx-font-size: 15;" text="Danh sách sinh viên" />
+            <Button fx:id="btnStudentsList" layoutX="8.0" layoutY="224.0" mnemonicParsing="false" onAction="#onStudentsList" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6;-fx-background-radius: 6; -fx-font-size: 15;" text="Danh sách sinh viên" />
             <ImageView fitHeight="50.0" fitWidth="30.0" layoutX="15.0" layoutY="10.0" preserveRatio="true">
                <image>
                   <Image url="@../../../../../icon/school.png" />
@@ -35,6 +34,7 @@
                   <Font name="Arial Bold" size="36.0" />
                </font>
             </Label>
+            <Button fx:id="btnResults" layoutX="7.0" layoutY="279.0" mnemonicParsing="false" onAction="#onStudyResults" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 15;" text="Bảng điểm các lớp" />
          </children>
       </AnchorPane>
       <GridPane hgap="15" layoutX="232.0" layoutY="131.0" vgap="15">

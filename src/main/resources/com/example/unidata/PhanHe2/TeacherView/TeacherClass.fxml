@@ -19,8 +19,8 @@
       <AnchorPane layoutY="42.0" prefHeight="558.0" prefWidth="200.0" style="-fx-background-color: #d6eaf8;">
          <children>
             <Button fx:id="btnUserProfile" layoutX="8.0" layoutY="101.0" mnemonicParsing="false" onAction="#onProfile" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 15;" text="Thông tin cá nhân" textFill="#323442" />
-            <Button fx:id="btnCourseRegistration" layoutX="8.0" layoutY="163.0" mnemonicParsing="false" onAction="#onCourseRegistration" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #008000; -fx-text-fill: white; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 15;" text="Phân công giảng dạy" />
-            <Button fx:id="btnStudyResults" layoutX="8.0" layoutY="224.0" mnemonicParsing="false" onAction="#onStudyResults" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6;-fx-background-radius: 6; -fx-font-size: 15;" text="Danh sách sinh viên" />
+            <Button fx:id="btnClasses" layoutX="8.0" layoutY="163.0" mnemonicParsing="false" onAction="#onClassAssigned" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #008000; -fx-text-fill: white; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 15;" text="Phân công giảng dạy" />
+            <Button fx:id="btnStudentsList" layoutX="8.0" layoutY="224.0" mnemonicParsing="false" onAction="#onStudentsList" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6;-fx-background-radius: 6; -fx-font-size: 15;" text="Danh sách sinh viên" />
             <ImageView fitHeight="50.0" fitWidth="30.0" layoutX="15.0" layoutY="10.0" preserveRatio="true">
                <image>
                   <Image url="@../../../../../icon/school.png" />
@@ -31,15 +31,18 @@
                   <Font name="Arial Bold" size="36.0" />
                </font>
             </Label>
+            <Button fx:id="btnResults" layoutX="8.0" layoutY="279.0" mnemonicParsing="false" onAction="#onStudyResults" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 15;" text="Bảng điểm các lớp" />
          </children>
       </AnchorPane>
       <Label layoutX="232.0" layoutY="63.0" style="-fx-font-size: 24; -fx-font-weight: bold;" text="Phân công giảng dạy" />
-      <TableView layoutX="232.0" layoutY="121.0" prefHeight="430.0" prefWidth="620.0">
+      <TableView fx:id="phanCong" layoutX="232.0" layoutY="121.0" prefHeight="430.0" prefWidth="620.0">
         <columns>
-          <TableColumn prefWidth="40.0" text="STT" />
-          <TableColumn prefWidth="380.0" text="Mã học phần" />
-            <TableColumn minWidth="0.0" prefWidth="100.0" text="Học kì" />
-            <TableColumn prefWidth="99.3333740234375" text="Năm học" />
+          <TableColumn fx:id="stt" prefWidth="40.0" text="STT" />
+          <TableColumn fx:id="maSV" prefWidth="150.0" text="Mã sinh viên" />
+            <TableColumn fx:id="diemThucHanh" minWidth="0.0" prefWidth="107.5" text="Điểm thực hành" />
+            <TableColumn fx:id="diemQuaTrinh" prefWidth="107.5" text="Điểm quá trình" />
+            <TableColumn fx:id="diemCuoiKi" prefWidth="107.5" text="Điểm cuối kì" />
+            <TableColumn fx:id="diemTongKet" prefWidth="107.5" text="Điểm tổng kết" />
         </columns>
       </TableView>
    </children>

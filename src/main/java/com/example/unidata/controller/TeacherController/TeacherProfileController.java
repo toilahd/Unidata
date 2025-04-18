@@ -12,6 +12,9 @@ import javafx.stage.Stage;
 import javafx.scene.control.*;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
 public class TeacherProfileController implements Initializable {
@@ -23,7 +26,8 @@ public class TeacherProfileController implements Initializable {
     @FXML
     private Button btnClasses;
     @FXML
-    private Button btnStudents;
+    private Button btnStudentsList;
+    @FXML Button btnResults;
 
     @FXML private Label MANLD;
     @FXML private Label HOTEN;
@@ -39,9 +43,9 @@ public class TeacherProfileController implements Initializable {
 
     private void loadTeacherData() {
         try {
-            var conn = DatabaseConnection.getConnection();
-            var stmt = conn.prepareStatement("SELECT * FROM GIAOVIEN WHERE MANLD = USER");
-            var rs = stmt.executeQuery();
+            Connection conn = DatabaseConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM DBA_MANAGER.UV_NVCB_CANHAN");
+            ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
                 MANLD.setText(rs.getString("MANLD"));
@@ -51,12 +55,9 @@ public class TeacherProfileController implements Initializable {
                 LUONG.setText(rs.getString("LUONG"));
                 PHUCAP.setText(rs.getString("PHUCAP"));
                 DT.setText(rs.getString("DT"));
-                MAKHOA.setText(rs.getString("MAKHOA"));
+                MAKHOA.setText(rs.getString("MADV"));
             }
 
-            rs.close();
-            stmt.close();
-            conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -66,19 +67,15 @@ public class TeacherProfileController implements Initializable {
     private void onEditProfile(ActionEvent event) {
         String newPhone = DT.getText().trim();
 
-        if (!newPhone.matches("\\d{10,11}")) {
-            showAlert("Số điện thoại không hợp lệ.");
-            return;
-        }
 
         try {
-            var conn = DatabaseConnection.getConnection();
-            var stmt = conn.prepareStatement("UPDATE GIAOVIEN SET DT = ? WHERE MANLD = USER");
+            Connection conn = DatabaseConnection.getConnection();
+            System.out.println("Is connection closed? " + conn.isClosed());
+
+            PreparedStatement stmt = conn.prepareStatement("UPDATE DBA_MANAGER.UV_NVCB_CANHAN SET DT = ?");
             stmt.setString(1, newPhone);
             int rows = stmt.executeUpdate();
 
-            stmt.close();
-            conn.close();
 
             if (rows > 0) {
                 showAlert("Cập nhật thành công.");
@@ -122,10 +119,15 @@ public class TeacherProfileController implements Initializable {
         loadScene("/com/example/unidata/PhanHe2/TeacherView/TeacherClass.fxml",
                 "Danh sách lớp được phân công - Giáo Viên", btnClasses);
     }
-    public void onStudentList(ActionEvent event) {
+    public void onStudentsList(ActionEvent event) {
         loadScene("/com/example/unidata/PhanHe2/TeacherView/TeacherStudentList.fxml",
-                "Danh sách sinh viên - Giáo Viên", btnStudents);
+                "Danh sách sinh viên - Giáo Viên", btnStudentsList);
     }
+    public void onStudyResults(ActionEvent event) {
+        loadScene("/com/example/unidata/PhanHe2/TeacherView/TeacherScoreView.fxml",
+                "Danh sách sinh viên - Giáo Viên", btnResults);
+    }
+
     private void loadScene(String fxmlFile, String title, Button button) {
         try {
             Stage stage = (Stage) button.getScene().getWindow();
