@@ -23,4 +23,6 @@ module com.example.unidata {
     exports com.example.unidata.controller.StudentController;
     opens com.example.unidata.controller.StudentController to javafx.fxml;
 
+    exports com.example.unidata.controller.TeacherController;
+    opens com.example.unidata.controller.TeacherController to javafx.fxml;
 }

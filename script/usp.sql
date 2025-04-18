@@ -17,7 +17,7 @@ BEGIN
                 WHEN 'NVPKT'  THEN v_prefix := 'NVPKT_';
                 WHEN 'NVTCHC' THEN v_prefix := 'NVTCHC_';
                 WHEN 'NVCTSV' THEN v_prefix := 'NVCTSV_';
-                WHEN 'TRDDV'   THEN v_prefix := 'TRGDV_';
+                WHEN 'TRGDV'   THEN v_prefix := 'TRGDV_';
                 ELSE v_prefix := 'NV_';
             END CASE;
 
@@ -43,11 +43,11 @@ BEGIN
             CASE UPPER(nv.VAITRO)
                 WHEN 'NVCB'     THEN v_role := 'RL_NVCB';
                 WHEN 'GV'       THEN v_role := 'RL_GV';
-                WHEN 'NV PDT'   THEN v_role := 'RL_NVPDT';
-                WHEN 'NV PKT'   THEN v_role := 'RL_NVPKT';
-                WHEN 'NV TCHC'  THEN v_role := 'RL_NVTCHC';
-                WHEN 'NV CTSV'  THEN v_role := 'RL_NVCTSV';
-                WHEN 'TRDĐV'    THEN v_role := 'RL_TRDGV';
+                WHEN 'NVPDT'   THEN v_role := 'RL_NVPDT';
+                WHEN 'NVPKT'   THEN v_role := 'RL_NVPKT';
+                WHEN 'NVTCHC'  THEN v_role := 'RL_NVTCHC';
+                WHEN 'NVCTSV'  THEN v_role := 'RL_NVCTSV';
+                WHEN 'TRGDV'    THEN v_role := 'RL_TRDGV';
                 ELSE v_role := NULL;
             END CASE;
 

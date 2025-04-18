@@ -121,6 +121,9 @@ public class LoginController implements Initializable {
             return "student";
         }
         // add next logic here
+        else if (grantedRoles.contains("RL_GV")) {
+            return "teacher";
+        }
         else {
             return "null"; // or another default role if applicable
         }

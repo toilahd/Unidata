@@ -199,6 +199,7 @@ BEGIN
 END;
 /
 
+-- enable (TRUE) / disable (FALSE)
 BEGIN
   DBMS_RLS.ENABLE_POLICY(
     object_schema => 'DBA_MANAGER',
@@ -213,7 +214,7 @@ BEGIN
     policy_name   => 'sinhvien_update_security_policy',
     enable        => TRUE
   );
-   
+
   DBMS_RLS.ENABLE_POLICY(
     object_schema => 'DBA_MANAGER',
     object_name   => 'SINHVIEN',
