@@ -198,4 +198,35 @@ BEGIN
    );
 END;
 /
+
+BEGIN
+  DBMS_RLS.ENABLE_POLICY(
+    object_schema => 'DBA_MANAGER',
+    object_name   => 'SINHVIEN',
+    policy_name   => 'sinhvien_security_policy',
+    enable        => TRUE
+  );
+  
+  DBMS_RLS.ENABLE_POLICY(
+    object_schema => 'DBA_MANAGER',
+    object_name   => 'SINHVIEN',
+    policy_name   => 'sinhvien_update_security_policy',
+    enable        => TRUE
+  );
+   
+  DBMS_RLS.ENABLE_POLICY(
+    object_schema => 'DBA_MANAGER',
+    object_name   => 'SINHVIEN',
+    policy_name   => 'sinhvien_insert_security_policy',
+    enable        => TRUE
+  );
+
+  DBMS_RLS.ENABLE_POLICY(
+    object_schema => 'DBA_MANAGER',
+    object_name   => 'SINHVIEN',
+    policy_name   => 'sinhvien_delete_security_policy',
+    enable        => TRUE
+  );
+END;
+/
 -- Câu 4: QUAN HE DANG KY - CHINH SACH VPD

@@ -119,9 +119,9 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON NHANVIEN TO RL_NVTCHC;
 -- Người dùng có vai trò “GV” được quyền xem các dòng phân công giảng dạy liên quan
 -- đến chính giảng viên đó
 
-CREATE VIEW UV_GV_CANHAN AS
+CREATE OR REPLACE VIEW UV_GV_CANHAN AS
 SELECT * FROM MOMON WHERE MAGV = SYS_CONTEXT('USERENV', 'SESSION_USER');
-    GRANT SELECT ON UV_GV_CANHAN TO RL_GV;
+GRANT SELECT ON UV_GV_CANHAN TO RL_GV;
 
 -- Người dùng có vai trò “NV PĐT” có quyền xem, thêm, cập nhật, xóa dòng trong bảng
 -- MOMON liên quan đến học kỳ hiện tại của năm học đang diễn ra.
@@ -227,7 +227,7 @@ JOIN HOCPHAN HP ON MM.MAHP = HP.MAHP
 JOIN NHANVIEN NV ON MM.MAGV = NV.MANLD
 JOIN DONVI DV ON HP.MADV = DV.MADV
 WHERE HP.MADV = (  
-    SELECT KHOA
+    SELECT KHOA 
     FROM SINHVIEN
     WHERE MASV = SYS_CONTEXT('USERENV', 'SESSION_USER')
 );

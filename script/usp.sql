@@ -13,11 +13,11 @@ BEGIN
             CASE UPPER(nv.VAITRO)
                 WHEN 'GV'      THEN v_prefix := 'GV_';
                 WHEN 'NVCB'    THEN v_prefix := 'NVCB_';
-                WHEN 'NV PDT'  THEN v_prefix := 'NVPDT_';
-                WHEN 'NV PKT'  THEN v_prefix := 'NVPKT_';
-                WHEN 'NV TCHC' THEN v_prefix := 'NVTCHC_';
-                WHEN 'NV CTSV' THEN v_prefix := 'NVCTSV_';
-                WHEN 'TRDĐV'   THEN v_prefix := 'TRGDV_';
+                WHEN 'NVPDT'  THEN v_prefix := 'NVPDT_';
+                WHEN 'NVPKT'  THEN v_prefix := 'NVPKT_';
+                WHEN 'NVTCHC' THEN v_prefix := 'NVTCHC_';
+                WHEN 'NVCTSV' THEN v_prefix := 'NVCTSV_';
+                WHEN 'TRDDV'   THEN v_prefix := 'TRGDV_';
                 ELSE v_prefix := 'NV_';
             END CASE;
 
@@ -90,7 +90,7 @@ BEGIN
                     END IF;
             END;
       EXECUTE IMMEDIATE 'GRANT CREATE SESSION TO ' || v_username;
-      EXECUTE IMMEDIATE 'GRANT RL_sv TO ' || v_username;
+      EXECUTE IMMEDIATE 'GRANT RL_SV TO ' || v_username;
 
       DBMS_OUTPUT.PUT_LINE('Gán role RL_sv cho ' || v_username);
     END;

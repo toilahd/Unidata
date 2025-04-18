@@ -1,12 +1,15 @@
 package com.example.unidata.controller.StudentController;
 
 import javafx.event.ActionEvent;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Alert;
 
 import java.io.IOException;
 import java.sql.*;
@@ -15,9 +18,9 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.example.unidata.controller.StudentController.EditStudentProfileController;
 
-public class StudentProfileController {
-
+public class StudentProfileController implements Initializable {
     @FXML
     private Label DIACHI;
     @FXML
@@ -44,8 +47,12 @@ public class StudentProfileController {
     @FXML
     private Button btnUserProfile;
 
+
     @FXML
     private AnchorPane mainContentPane;
+    @FXML
+    private Button editProfile;
+
 
     // variables
     private String studentUsername;
@@ -68,22 +75,19 @@ public class StudentProfileController {
         }
     }
 
-    @FXML
-    void onEditProfile(ActionEvent event) {
-    }
 
     @FXML
-    void onCourseRegistration(ActionEvent event) {
+    public void onCourseRegistration(ActionEvent event) {
         loadScene("com/example/unidata/PhanHe2/StudentView/CourseRegistrationView.fxml", "Courses Registration - Student");
     }
 
     @FXML
-    void onProfile(ActionEvent event) {
+    public void onProfile(ActionEvent event) {
         loadScene("com/example/unidata/PhanHe2/StudentView/StudentProfileView.fxml", "Profile - Student");
     }
 
     @FXML
-    void onStudyResults(ActionEvent event) {
+    public void onStudyResults(ActionEvent event) {
         loadScene("com/example/unidata/controller/StudentController/StudyResultsController.java", "Study Results - Student");
     }
     private void loadScene(String fxmlFile, String title) {
@@ -98,42 +102,73 @@ public class StudentProfileController {
         }
     }
 
-
     // loading profile data
     public void loadStudentInfo() {
         String query = """
-                SELECT SV.MASV, SV.HOTEN, SV.PHAI, TO_CHAR(SV.NGSINH, 'DD/MM/YYYY') AS NGSINH,
-                       SV.DIACHI, SV.DT, DV.TENDV AS KHOA, SV.TINHTRANG
-                FROM SINHVIEN SV
-                JOIN DONVI DV ON SV.MADV = DV.MADV
-                WHERE SV.MASV = ?
+                SELECT * FROM DBA_MANAGER.SINHVIEN
                 """;
 
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(query)) {
-
-            pstmt.setString(1, studentUsername);
+        try {
+            Connection conn = DatabaseConnection.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query);
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
+                System.out.println("DEBUG: Found student data for " + rs.getString("MASV"));
+
                 MaSV.setText(rs.getString("MASV"));
                 HOTEN.setText(rs.getString("HOTEN"));
                 PHAI.setText(rs.getString("PHAI"));
                 NGSINH.setText(rs.getString("NGSINH"));
-                DIACHI.setText(rs.getString("DIACHI"));
+                DIACHI.setText(rs.getString("DCHI"));
                 DT.setText(rs.getString("DT"));
                 KHOA.setText(rs.getString("KHOA"));
                 TINHTRANG.setText(rs.getString("TINHTRANG"));
+            } else {
+                System.out.println("DEBUG: No student data returned for current user.");
             }
 
         } catch (SQLException e) {
+            Alert alert;
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Cannot fetch student data!");
+            alert.showAndWait();
             e.printStackTrace();
-            // optionally display error in UI
+            Platform.exit();
+        }
+    }
+    @FXML
+    public void onEditProfile(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/unidata/PhanHe2/StudentView/EditStudentProfileView.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Updating user profile");
+            stage.setScene(new Scene(loader.load()));
+
+            // Get controller and set data
+            EditStudentProfileController controller = loader.getController();
+            controller.setStudentData(
+                    MaSV.getText(), HOTEN.getText(), PHAI.getText(),
+                    NGSINH.getText(), DIACHI.getText(), DT.getText(),
+                    KHOA.getText(), TINHTRANG.getText()
+            );
+            // Set the callback so that after update, the main profile is refreshed.
+            controller.setOnProfileUpdated(() -> {
+                // This callback gets executed after the update is successful
+                loadStudentInfo();  // Reload data from the DB into the main profile view.
+            });
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        setStudentUsername(DatabaseConnection.getCurrentUsername());
         if (studentUsername != null) {
             loadStudentInfo();
         }
