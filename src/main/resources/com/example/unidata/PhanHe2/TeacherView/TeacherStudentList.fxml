@@ -35,7 +35,7 @@
          </children>
       </AnchorPane>
       <Label layoutX="232.0" layoutY="63.0" style="-fx-font-size: 24; -fx-font-weight: bold;" text="Danh sách sinh viên" />
-      <TableView layoutX="232.0" layoutY="121.0" prefHeight="430.0" prefWidth="620.0">
+      <TableView fx:id="tableView" layoutX="232.0" layoutY="121.0" prefHeight="430.0" prefWidth="620.0">
          <columns>
             <TableColumn fx:id="stt" prefWidth="40.0" text="STT" />
             <TableColumn fx:id="hoTen" prefWidth="380.0" text="Họ và tên" />

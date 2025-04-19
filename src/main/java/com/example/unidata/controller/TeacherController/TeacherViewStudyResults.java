@@ -1,17 +1,20 @@
 package com.example.unidata.controller.TeacherController;
 
 import com.example.unidata.DatabaseConnection;
-import javafx.collections.ObservableList;
+import com.example.unidata.controller.TeacherController.util.DanhSachDiem;
+import com.example.unidata.controller.TeacherController.util.DanhSachSinhVien;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
-import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,50 +23,44 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
-import com.example.unidata.controller.TeacherController.util.DanhSachSinhVien;
-
-public class TeacherStudentList implements Initializable {
+public class TeacherViewStudyResults implements Initializable {
     @FXML private Button btnSignOut;
     @FXML private Button btnUserProfile;
     @FXML private Button btnClasses;
     @FXML private Button btnStudentsList;
     @FXML private Button btnResults;
 
-    @FXML private TableView<DanhSachSinhVien> tableView;
-    @FXML private TableColumn<DanhSachSinhVien, Integer> stt;
-    @FXML private TableColumn<DanhSachSinhVien, String> hoTen;
-    @FXML private TableColumn<DanhSachSinhVien, String> gioiTinh;
-    @FXML private TableColumn<DanhSachSinhVien, String> tinhtrang;
+    @FXML private TableView<DanhSachDiem> phanCong;
+    @FXML private TableColumn<DanhSachDiem, Integer> stt;
+    @FXML private TableColumn<DanhSachDiem, String> maSV;
+    @FXML private TableColumn<DanhSachDiem, Float> diemThucHanh;
+    @FXML private TableColumn<DanhSachDiem, Float> diemQuaTrinh;
+    @FXML private TableColumn<DanhSachDiem, Float> diemCuoiKi;
+    @FXML private TableColumn<DanhSachDiem, Float> diemTongKet;
 
-    private void loadStudentData() {
-        ObservableList<DanhSachSinhVien> data = FXCollections.observableArrayList();
+    private void loadResults() {
+        ObservableList<DanhSachDiem> data = FXCollections.observableArrayList();
         try {
             Connection conn = DatabaseConnection.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT HOTEN, PHAI, TINHTRANG FROM DBA_MANAGER.SINHVIEN");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM DBA_MANAGER.DANGKY");
             ResultSet rs = stmt.executeQuery();
             int i = 1;
             while (rs.next()) {
-                data.add(new DanhSachSinhVien(
+                data.add(new DanhSachDiem(
                         i++,
-                        rs.getString("HOTEN"),
-                        rs.getString("PHAI"),
-                        rs.getString("TINHTRANG")
+                        rs.getString("MASV"),
+                        rs.getFloat("DIEMTH"),
+                        rs.getFloat("DIEMQT"),
+                        rs.getFloat("DIEMCK"),
+                        rs.getFloat("DIEMTK")
                 ));
             }
-            tableView.setItems(data);
+            phanCong.setItems(data);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-
-    private void showAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Thông báo");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
 
     public void onSignOut(ActionEvent event) {
         try {
@@ -109,13 +106,13 @@ public class TeacherStudentList implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Gán cột với dữ liệu
         stt.setCellValueFactory(new PropertyValueFactory<>("stt"));
-        hoTen.setCellValueFactory(new PropertyValueFactory<>("hoTen"));
-        gioiTinh.setCellValueFactory(new PropertyValueFactory<>("gioiTinh"));
-        tinhtrang.setCellValueFactory(new PropertyValueFactory<>("tinhTrang"));
-
-        loadStudentData(); // hàm tự viết để load dữ liệu từ CSDL
+        maSV.setCellValueFactory(new PropertyValueFactory<>("masv"));
+        diemThucHanh.setCellValueFactory(new PropertyValueFactory<>("diemthuchanh"));
+        diemQuaTrinh.setCellValueFactory(new PropertyValueFactory<>("diemquatrinh"));
+        diemCuoiKi.setCellValueFactory(new PropertyValueFactory<>("diemcuoiki"));
+        diemTongKet.setCellValueFactory(new PropertyValueFactory<>("diemtongket"));
+        loadResults();
     }
 
 }
