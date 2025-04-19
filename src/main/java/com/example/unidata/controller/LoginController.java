@@ -98,7 +98,7 @@ public class LoginController implements Initializable {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
-                alert.setContentText("There is something sus here, fix it my friend");
+                alert.setContentText("There is something sus here (no role), fix it my friend");
                 alert.showAndWait();
             }
 
@@ -121,6 +121,9 @@ public class LoginController implements Initializable {
             return "student";
         }
         // add next logic here
+        else if (grantedRoles.contains("RL_GV")) {
+            return "teacher";
+        }
         else {
             return "null"; // or another default role if applicable
         }
@@ -141,7 +144,7 @@ public class LoginController implements Initializable {
                 fxmlFile = "/com/example/unidata/PhanHe1/dashboard.fxml";
                 break;
             case "teacher":
-                fxmlFile = "/com/example/unidata/teacher.fxml";
+                fxmlFile = "/com/example/unidata/PhanHe2/TeacherView/TeacherProfileView.fxml";
                 break;
             case "student":
                 fxmlFile = "/com/example/unidata/PhanHe2/StudentView/StudentProfileView.fxml";

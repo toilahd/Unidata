@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="510.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.unidata.controller.StudentController.EditStudentProfileController">
+    <children>
+        <VBox layoutX="20" layoutY="20" spacing="10">
+            <children>
+                <Label text="Mã sinh viên:" />
+                <Label fx:id="tfMaSV" style="-fx-font-weight: bold;" text="test" />
+
+                <Label text="Họ tên:" />
+                <Label fx:id="tfHoTen" style="-fx-font-weight: bold;" text="test" />
+
+                <Label text="Giới tính:" />
+                <Label fx:id="tfPhai" style="-fx-font-weight: bold;" text="test" />
+
+                <Label text="Ngày sinh:" />
+                <Label fx:id="tfNgaySinh" style="-fx-font-weight: bold;" text="test" />
+
+                <Label text="Địa chỉ:" />
+                <TextField fx:id="tfDiaChi" text="test" />
+
+                <Label text="Điện thoại:" />
+                <TextField fx:id="tfDienThoai" text="test" />
+
+                <Label text="Khoa:" />
+                <Label fx:id="tfKhoa" style="-fx-font-weight: bold;" text="test" />
+
+                <Label text="Tình trạng:" />
+                <Label fx:id="tfTinhTrang" style="-fx-font-weight: bold;" text="test" />
+
+                <Button onAction="#onSave" text="Lưu" />
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

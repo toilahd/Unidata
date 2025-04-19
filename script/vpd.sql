@@ -240,3 +240,15 @@ BEGIN
     );
 END;
 /
+
+-- enable (TRUE) / disable (FALSE)
+BEGIN
+  DBMS_RLS.ENABLE_POLICY(
+    object_schema => 'DBA_MANAGER',
+    object_name   => 'SINHVIEN',
+    policy_name   => 'sinhvien_security_policy',
+    enable        => TRUE
+  );
+END;
+/
+-- Câu 4: QUAN HE DANG KY - CHINH SACH VPD

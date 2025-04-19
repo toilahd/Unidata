@@ -236,7 +236,7 @@ public class UserManagement implements Initializable {
 
     // Create a new user
     public void createUser(String username, String password) throws SQLException {
-        String sql = "CREATE USER " + username + " IDENTIFIED BY " + password;
+        String sql = "CREATE USER " + username.toUpperCase() + " IDENTIFIED BY " + password;
         executeStatement(sql);
         System.out.println("User " + username + " created successfully");
     }

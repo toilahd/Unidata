@@ -99,7 +99,7 @@ public class RoleList implements Initializable {
         ObservableList<AccountData> listAccounts = FXCollections.observableArrayList();
 
         String sql = """
-        SELECT u.username, r.granted_role
+        SELECT u.username, r.granted_role       
                 FROM all_users u
                 LEFT JOIN dba_role_privs r
                   ON u.username = r.grantee

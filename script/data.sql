@@ -25,7 +25,6 @@ BEGIN
   INSERT INTO DONVI (MADV, TENDV, LOAIDV) VALUES ('PKT', 'Phòng Kế toán', 'Phòng');
   INSERT INTO DONVI (MADV, TENDV, LOAIDV) VALUES ('TCHC', 'Phòng Tổ chức Hành chính', 'Phòng');
   INSERT INTO DONVI (MADV, TENDV, LOAIDV) VALUES ('CTSV', 'Phòng Công tác sinh viên', 'Phòng');
-
   ----------------------------------------------------------
   -- 2. NHÂN VIÊN
   ----------------------------------------------------------
@@ -36,7 +35,6 @@ BEGIN
   INSERT INTO NHANVIEN VALUES ('NV002', 'Trần Mỹ E', 'Nữ', TO_DATE('1986-11-30','YYYY-MM-DD'), 12500000, 1100000, '0941111222', 'NVPKT', 'PKT');
   INSERT INTO NHANVIEN VALUES ('NV003', 'Vũ Hồng F', 'Nữ', TO_DATE('1989-04-10','YYYY-MM-DD'), 13000000, 1200000, '0951111222', 'NVTCHC', 'TCHC');
   INSERT INTO NHANVIEN VALUES ('NV004', 'Đào Đức G', 'Nam', TO_DATE('1990-02-02','YYYY-MM-DD'), 11000000, 900000, '0961111222', 'NVCTSV', 'CTSV');
-
   -- Gán TRGDV cho DONVI
   UPDATE DONVI SET TRGDV = 'TR001' WHERE MADV = 'CNTT';
 
@@ -47,7 +45,6 @@ BEGIN
   INSERT INTO SINHVIEN VALUES ('SV002', 'Trần Quốc Bảo', 'Nam', TO_DATE('2002-06-01','YYYY-MM-DD'), 'Q3, HCM', '0901111224', 'CNTT', 'Đang học');
   INSERT INTO SINHVIEN VALUES ('SV003', 'Lê Thị Cẩm', 'Nữ', TO_DATE('2003-07-21','YYYY-MM-DD'), 'Q5, HCM', '0901111225', 'KTMT', 'Bảo lưu');
   INSERT INTO SINHVIEN VALUES ('SV004', 'Nguyễn Văn Duy', 'Nam', TO_DATE('2002-08-18','YYYY-MM-DD'), 'Q7, HCM', '0901111226', 'TOAN', 'Nghỉ học');
-
   ----------------------------------------------------------
   -- 4. HỌC PHẦN
   ----------------------------------------------------------
