@@ -78,17 +78,17 @@ public class StudentProfileController implements Initializable {
 
     @FXML
     public void onCourseRegistration(ActionEvent event) {
-        loadScene("com/example/unidata/PhanHe2/StudentView/CourseRegistrationView.fxml", "Courses Registration - Student");
+        loadScene("/com/example/unidata/PhanHe2/StudentView/CourseRegistrationView.fxml", "Courses Registration - Student");
     }
 
     @FXML
     public void onProfile(ActionEvent event) {
-        loadScene("com/example/unidata/PhanHe2/StudentView/StudentProfileView.fxml", "Profile - Student");
+        loadScene("/com/example/unidata/PhanHe2/StudentView/StudentProfileView.fxml", "Profile - Student");
     }
 
     @FXML
     public void onStudyResults(ActionEvent event) {
-        loadScene("com/example/unidata/controller/StudentController/StudyResultsController.java", "Study Results - Student");
+        loadScene("/com/example/unidata/PhanHe2/StudentView/StudyResultsView.fxml", "Study Results - Student");
     }
     private void loadScene(String fxmlFile, String title) {
         try {

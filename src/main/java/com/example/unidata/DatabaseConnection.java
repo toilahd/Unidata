@@ -1,7 +1,6 @@
 package com.example.unidata;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.*;
 
 public class DatabaseConnection {
     private static Connection connection;  // Add static connection instance
@@ -18,7 +17,7 @@ public class DatabaseConnection {
             String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
             connection = DriverManager.getConnection(url, userName, password);
 
-            currentUsername = userName; // Optional
+            currentUsername = userName;
             return connection;
         } catch (Exception e) {
             e.printStackTrace();
@@ -44,6 +43,26 @@ public class DatabaseConnection {
     // Optional session helpers
     public static String getCurrentUsername() {
         return currentUsername;
+    }
+
+    public static String getMasvFromLogin() {
+        String sql = """
+            SELECT MASV
+            FROM DBA_MANAGER.SINHVIEN
+        """;
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getString("MASV");
+            } else {
+                System.out.println("THERE IS NOT MASV FROM THIS USER FROM THE SINHVIEN TABLE");
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static void setCurrentRole(String role) {

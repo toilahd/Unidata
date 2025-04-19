@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane accessibleRole="BUTTON" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane accessibleRole="BUTTON" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.unidata.controller.StudentController.StudyResultsController">
    <children>
       <AnchorPane prefHeight="42.0" prefWidth="900.0" style="-fx-background-color: #5dade2;">
          <children>
@@ -45,50 +40,16 @@
             <VBox fillWidth="false" layoutX="12.8" layoutY="0.8" prefHeight="558.0" prefWidth="688.0" spacing="15" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="1.0">
                <children>
                   <Label style="-fx-font-size: 24; -fx-font-weight: bold;" text="Kết quả học tập" />
-                  <HBox spacing="10">
-                     <children>
-                        <ComboBox fx:id="semesterComboBox" promptText="Chọn học kỳ" />
-                        <ComboBox fx:id="yearComboBox" promptText="Chọn năm học" />
-                        <Button onAction="#onViewGrades" text="Xem điểm" />
-                     </children>
-                  </HBox>
+                  <HBox spacing="10" />
                   <TableView fx:id="gradesTable" prefHeight="386.0" prefWidth="625.0" VBox.vgrow="ALWAYS">
                      <columns>
-                        <TableColumn fx:id="colCode" prefWidth="80" text="Mã HP" />
-                        <TableColumn fx:id="colName" prefWidth="200" text="Tên học phần" />
-                        <TableColumn fx:id="colCredits" prefWidth="60" text="Số tín chỉ" />
-                        <TableColumn fx:id="colPractice" prefWidth="70" text="Điểm TH" />
-                        <TableColumn fx:id="colMidterm" prefWidth="70" text="Điểm QT" />
-                        <TableColumn fx:id="colFinal" prefWidth="70" text="Điểm CK" />
-                        <TableColumn fx:id="colAverage" prefWidth="70" text="Điểm TK" />
+                        <TableColumn fx:id="maHP" prefWidth="217.33333337306976" text="Mã HP" />
+                        <TableColumn fx:id="diemTH" prefWidth="115.33332824707031" text="Điểm TH" />
+                        <TableColumn fx:id="diemQT" prefWidth="98.6666259765625" text="Điểm QT" />
+                        <TableColumn fx:id="diemCK" prefWidth="95.33340454101562" text="Điểm CK" />
+                        <TableColumn fx:id="diemTK" prefWidth="103.333251953125" text="Điểm TK" />
                      </columns>
                   </TableView>
-                  <GridPane hgap="15" prefHeight="53.0" prefWidth="506.0" vgap="10">
-                     <padding>
-                        <Insets top="10" />
-                     </padding>
-                     <columnConstraints>
-                        <ColumnConstraints minWidth="150" />
-                        <ColumnConstraints minWidth="80" />
-                        <ColumnConstraints minWidth="150" />
-                        <ColumnConstraints minWidth="80" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
-                        <RowConstraints maxHeight="17.33333333333333" minHeight="17.33333333333333" prefHeight="17.33333333333333" />
-                        <RowConstraints />
-                     </rowConstraints>
-                     <children>
-                        <Label prefWidth="120.0" text="Tổng số tín chỉ đã học:" GridPane.rowIndex="1" />
-                        <Label fx:id="lblTotalCredits" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label text="Điểm trung bình học kỳ:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                        <Label fx:id="lblSemesterGPA" text="0.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                        <Label text="Tổng số tín chỉ tích lũy:" GridPane.rowIndex="2" />
-                        <Label fx:id="lblAccumulatedCredits" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label text="Điểm trung bình tích lũy:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                        <Label fx:id="lblCumulativeGPA" text="0.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                     </children>
-                  </GridPane>
                </children>
             </VBox>
          </children>
