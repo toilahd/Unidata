@@ -31,18 +31,16 @@
                   <Font name="Arial Bold" size="36.0" />
                </font>
             </Label>
-            <Button fx:id="btnResults" layoutX="8.0" layoutY="279.0" mnemonicParsing="false" onAction="#onStudyResults" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 15;" text="Bảng điểm các lớp" />
+            <Button fx:id="btnResults" layoutX="7.0" layoutY="279.0" mnemonicParsing="false" onAction="#onStudyResults" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 15;" text="Bảng điểm các lớp" />
          </children>
       </AnchorPane>
       <Label layoutX="232.0" layoutY="63.0" style="-fx-font-size: 24; -fx-font-weight: bold;" text="Phân công giảng dạy" />
       <TableView fx:id="phanCong" layoutX="232.0" layoutY="121.0" prefHeight="430.0" prefWidth="620.0">
         <columns>
           <TableColumn fx:id="stt" prefWidth="40.0" text="STT" />
-          <TableColumn fx:id="maSV" prefWidth="150.0" text="Mã sinh viên" />
-            <TableColumn fx:id="diemThucHanh" minWidth="0.0" prefWidth="107.5" text="Điểm thực hành" />
-            <TableColumn fx:id="diemQuaTrinh" prefWidth="107.5" text="Điểm quá trình" />
-            <TableColumn fx:id="diemCuoiKi" prefWidth="107.5" text="Điểm cuối kì" />
-            <TableColumn fx:id="diemTongKet" prefWidth="107.5" text="Điểm tổng kết" />
+          <TableColumn fx:id="maHocPhan" prefWidth="380.0" text="Mã học phần" />
+            <TableColumn fx:id="namHoc" prefWidth="100.0" text="Năm học" />
+            <TableColumn fx:id="hocKi" prefWidth="100.0" text="Học kì" />
         </columns>
       </TableView>
    </children>

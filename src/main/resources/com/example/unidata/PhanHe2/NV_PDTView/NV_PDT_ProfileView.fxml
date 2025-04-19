@@ -61,7 +61,7 @@
       <AnchorPane layoutY="41.0" prefHeight="517.0" prefWidth="200.0" style="-fx-background-color: #d6eaf8;">
          <children>
             <Button fx:id="btnUserProfile1" layoutX="8.0" layoutY="101.0" mnemonicParsing="false" onAction="#onProfile" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #008000; -fx-text-fill: white; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 15;" text="Thông tin cá nhân" textFill="#323442" />
-            <Button fx:id="btnCourseRegistration1" layoutX="8.0" layoutY="163.0" mnemonicParsing="false" onAction="#onCourseRegistration" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 15;" text="Danh sách nhân viên" />
+            <Button fx:id="btnCourseRegistration1" layoutX="8.0" layoutY="163.0" mnemonicParsing="false" onAction="#onCourseRegistration" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 15;" text="Danh sách môn" />
             <ImageView fitHeight="50.0" fitWidth="30.0" layoutX="15.0" layoutY="10.0" preserveRatio="true">
                <image>
                   <Image url="@../../../../../icon/school.png" />
@@ -72,7 +72,10 @@
                   <Font name="Arial Bold" size="36.0" />
                </font>
             </Label>
-            <Button fx:id="btnCourseRegistration21" layoutX="8.0" layoutY="223.0" mnemonicParsing="false" onAction="#onCourseRegistration" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6;                            -fx-background-radius: 6; -fx-font-size: 15;" text="Phân công giảng dạy" />
+            <Button fx:id="btnCourseRegistration21" layoutX="8.0" layoutY="223.0" mnemonicParsing="false" onAction="#onCourseRegistration" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6;                            -fx-background-radius: 6; -fx-font-size: 15;" text="Thêm môn" />
+            <Button fx:id="btnCourseRegistration211" layoutX="8.0" layoutY="287.0" mnemonicParsing="false" onAction="#onCourseRegistration" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6;                            -fx-background-radius: 6; -fx-font-size: 15;" text="Cập nhật môn" />
+            <Button fx:id="btnCourseRegistration2111" layoutX="8.0" layoutY="422.0" mnemonicParsing="false" onAction="#onCourseRegistration" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6;                            -fx-background-radius: 6; -fx-font-size: 15;" text="Xóa môn" />
+            <Button fx:id="btnCourseRegistration21111" layoutX="9.0" layoutY="352.0" mnemonicParsing="false" onAction="#onCourseRegistration" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6;                            -fx-background-radius: 6; -fx-font-size: 15;" text="Cập nhật sinh viên" />
          </children>
       </AnchorPane>
    </children>

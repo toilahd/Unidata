@@ -241,7 +241,7 @@ BEGIN
 END;
 /
 
--- enable (TRUE) / disable (FALSE)
+-- enable (FALSE) / disable (FALSE)
 BEGIN
   DBMS_RLS.ENABLE_POLICY(
     object_schema => 'DBA_MANAGER',
