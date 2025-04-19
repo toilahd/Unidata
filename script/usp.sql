@@ -47,7 +47,7 @@ BEGIN
                 WHEN 'NVPKT'   THEN v_role := 'RL_NVPKT';
                 WHEN 'NVTCHC'  THEN v_role := 'RL_NVTCHC';
                 WHEN 'NVCTSV'  THEN v_role := 'RL_NVCTSV';
-                WHEN 'TRGDV'    THEN v_role := 'RL_TRDGV';
+                WHEN 'TRGDV'    THEN v_role := 'RL_TRGDV';
                 ELSE v_role := NULL;
             END CASE;
 
