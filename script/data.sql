@@ -45,6 +45,7 @@ BEGIN
   INSERT INTO SINHVIEN VALUES ('SV002', 'Trần Quốc Bảo', 'Nam', TO_DATE('2002-06-01','YYYY-MM-DD'), 'Q3, HCM', '0901111224', 'CNTT', 'Đang học');
   INSERT INTO SINHVIEN VALUES ('SV003', 'Lê Thị Cẩm', 'Nữ', TO_DATE('2003-07-21','YYYY-MM-DD'), 'Q5, HCM', '0901111225', 'KTMT', 'Bảo lưu');
   INSERT INTO SINHVIEN VALUES ('SV004', 'Nguyễn Văn Duy', 'Nam', TO_DATE('2002-08-18','YYYY-MM-DD'), 'Q7, HCM', '0901111226', 'TOAN', 'Nghỉ học');
+  COMMIT;
   ----------------------------------------------------------
   -- 4. HỌC PHẦN
   ----------------------------------------------------------

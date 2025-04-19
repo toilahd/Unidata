@@ -1,14 +1,18 @@
 package com.example.unidata.controller.TeacherController;
 
 import com.example.unidata.DatabaseConnection;
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import javafx.scene.control.*;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -16,77 +20,44 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
-public class TeacherProfileController implements Initializable {
+import com.example.unidata.controller.TeacherController.util.DanhSachPhanCong;
 
-    @FXML
-    private Button btnSignOut;
-    @FXML
-    private Button btnUserProfile;
-    @FXML
-    private Button btnClasses;
-    @FXML
-    private Button btnStudentsList;
+
+public class TeacherClass implements Initializable {
+    @FXML private Button btnSignOut;
+    @FXML private Button btnUserProfile;
+    @FXML private Button btnClasses;
+    @FXML private Button btnStudentsList;
     @FXML private Button btnResults;
 
-    @FXML private Label MANLD;
-    @FXML private Label HOTEN;
-    @FXML private Label PHAI;
-    @FXML private Label NGSINH;
-    @FXML private Label LUONG;
-    @FXML private Label PHUCAP;
-    @FXML private Label MAKHOA;
-
-    @FXML private TextField DT;
-    @FXML private Button editProfile;
+    @FXML private TableView<DanhSachPhanCong> phanCong;
+    @FXML private TableColumn<DanhSachPhanCong, String> stt;
+    @FXML private TableColumn<DanhSachPhanCong, String> maHocPhan;
+    @FXML private TableColumn<DanhSachPhanCong, String> hocKi;
+    @FXML private TableColumn<DanhSachPhanCong, String> namHoc;
 
 
     private void loadTeacherData() {
+        ObservableList<DanhSachPhanCong> data = FXCollections.observableArrayList();
         try {
             Connection conn = DatabaseConnection.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM DBA_MANAGER.UV_NVCB_CANHAN");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM DBA_MANAGER.UV_GV_CANHAN");
             ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                MANLD.setText(rs.getString("MANLD"));
-                HOTEN.setText(rs.getString("HOTEN"));
-                PHAI.setText(rs.getString("PHAI"));
-                NGSINH.setText(rs.getDate("NGSINH").toString());
-                LUONG.setText(rs.getString("LUONG"));
-                PHUCAP.setText(rs.getString("PHUCAP"));
-                DT.setText(rs.getString("DT"));
-                MAKHOA.setText(rs.getString("MADV"));
+            int id = 1;
+            while (rs.next()) {
+                data.add(new DanhSachPhanCong(
+                        String.valueOf(id++),
+                        rs.getString("MAHP"),
+                        rs.getString("HK"),
+                        rs.getString("NAM")
+                ));
             }
-
+            phanCong.setItems(data);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @FXML
-    private void onEditProfile(ActionEvent event) {
-        String newPhone = DT.getText().trim();
-
-
-        try {
-            Connection conn = DatabaseConnection.getConnection();
-            System.out.println("Is connection closed? " + conn.isClosed());
-
-            PreparedStatement stmt = conn.prepareStatement("UPDATE DBA_MANAGER.UV_NVCB_CANHAN SET DT = ?");
-            stmt.setString(1, newPhone);
-            int rows = stmt.executeUpdate();
-
-
-            if (rows > 0) {
-                showAlert("Cập nhật thành công.");
-                loadTeacherData(); // Refresh view
-            } else {
-                showAlert("Không thể cập nhật thông tin.");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            showAlert("Đã xảy ra lỗi khi cập nhật.");
-        }
-    }
 
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -95,7 +66,6 @@ public class TeacherProfileController implements Initializable {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
 
     public void onSignOut(ActionEvent event) {
         try {
@@ -141,6 +111,12 @@ public class TeacherProfileController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // Bind each TableColumn to the corresponding property in PhanCongHoc
+        stt.setCellValueFactory(new PropertyValueFactory<>("stt"));
+        maHocPhan.setCellValueFactory(new PropertyValueFactory<>("maHocPhan"));
+        hocKi.setCellValueFactory(new PropertyValueFactory<>("hocKi"));
+        namHoc.setCellValueFactory(new PropertyValueFactory<>("namHoc"));
+
         loadTeacherData();
     }
 }
