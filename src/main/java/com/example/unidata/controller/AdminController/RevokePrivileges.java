@@ -1,6 +1,7 @@
 package com.example.unidata.controller.AdminController;
 
 import com.example.unidata.DatabaseConnection;
+import com.example.unidata.controller.AdminController.util.UserData;
 import com.example.unidata.controller.AdminController.util.PrivilegeData;
 
 import javafx.event.ActionEvent;
@@ -21,9 +22,6 @@ import javafx.collections.FXCollections;
 public class RevokePrivileges implements Initializable {
     @FXML
     private Button btnSignOut;
-
-    @FXML
-    private Button btnBack;
 
     @FXML
     private ComboBox<String> comboTargetType;

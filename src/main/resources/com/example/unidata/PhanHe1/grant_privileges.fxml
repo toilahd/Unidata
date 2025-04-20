@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane accessibleRole="BUTTON" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.unidata.controller.AdminController.GrantPrivileges">
+<AnchorPane accessibleRole="BUTTON" prefHeight="600.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.unidata.controller.AdminController.GrantPrivileges">
     <children>
-        <AnchorPane prefHeight="42.0" prefWidth="800.0" style="-fx-background-color: #5dade2;">
+        <AnchorPane prefHeight="42.0" prefWidth="940.0" style="-fx-background-color: #5dade2;">
             <children>
-                <Button fx:id="btnSignOut" alignment="CENTER" layoutX="672.0" layoutY="6.0" mnemonicParsing="false" onAction="#onSignOut" prefHeight="30.0" prefWidth="103.0" style="-fx-background-color: transparent; -fx-text-fill: black; -fx-border-color: transparent; -fx-background-insets: 0; -fx-padding: 0;" text="Sign Out">
-                    <!--               <graphic>-->
-                    <!--                  <FontAwesomeIconView glyphName="LOCK" size="30" />-->
-                    <!--               </graphic>-->
-                </Button>
-
-
+                <Button fx:id="btnSignOut" alignment="CENTER" layoutX="772.0" layoutY="6.0" mnemonicParsing="false" onAction="#onSignOut" prefHeight="30.0" prefWidth="103.0" style="-fx-background-color: transparent; -fx-text-fill: black; -fx-border-color: transparent; -fx-background-insets: 0; -fx-padding: 0;" text="Sign Out" />
+                <Label layoutX="14.0" layoutY="6.0" text="Grant Privileges">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
             </children>
         </AnchorPane>
         <SVGPath layoutX="162.0" layoutY="124.0" />
@@ -25,6 +32,67 @@
                 <Button layoutX="8.0" layoutY="261.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #008000; -fx-text-fill: white; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 15;" text="Grant Privileges" />
                 <Button fx:id="btnRevokePrivileges" layoutX="8.0" layoutY="341.0" mnemonicParsing="false" onAction="#onRevokePrivileges" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 15;" text="Revoke Privileges" />
                 <Button fx:id="btnViewPrivileges" layoutX="8.0" layoutY="421.0" mnemonicParsing="false" onAction="#onViewPrivileges" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-text-fill: black; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 15;" text="View Privileges" />
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="200.0" layoutY="42.0" prefHeight="558.0" prefWidth="700.0">
+            <children>
+                <VBox layoutX="14.0" layoutY="14.0" prefHeight="530.0" prefWidth="672.0">
+                    <children>
+                        <AnchorPane prefHeight="240.0" prefWidth="672.0" style="-fx-background-color: #f0f0f0; -fx-background-radius: 10;">
+                            <children>
+                                <Label layoutX="14.0" layoutY="14.0" text="Grant Privilege To:">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="14.0" layoutY="50.0" text="Grant Type:" />
+                                <ComboBox fx:id="comboGrantType" layoutX="143.0" layoutY="46.0" onAction="#onGrantTypeChanged" prefHeight="25.0" prefWidth="200.0" />
+                                <Label layoutX="14.0" layoutY="85.0" text="Grantee:" />
+                                <ComboBox fx:id="comboGrantee" layoutX="143.0" layoutY="81.0" prefHeight="25.0" prefWidth="200.0" />
+                                <Label layoutX="14.0" layoutY="120.0" text="Privilege/Role:" />
+                                <ComboBox fx:id="comboPrivilege" layoutX="143.0" layoutY="116.0" onAction="#onPrivilegeChanged" prefHeight="25.0" prefWidth="200.0" />
+                                <Label layoutX="14.0" layoutY="155.0" text="Object Type:" />
+                                <ComboBox fx:id="comboObjectType" layoutX="143.0" layoutY="151.0" onAction="#onObjectTypeChanged" prefHeight="25.0" prefWidth="200.0" />
+                                <Label layoutX="14.0" layoutY="190.0" text="Object Name:" />
+                                <ComboBox fx:id="comboObjectName" layoutX="143.0" layoutY="186.0" onAction="#onObjectNameChanged" prefHeight="25.0" prefWidth="200.0" />
+                                <CheckBox fx:id="checkWithGrantOption" layoutX="143.0" layoutY="225.0" mnemonicParsing="false" text="WITH GRANT OPTION" />
+                                <Button fx:id="btnGrant" layoutX="472.0" layoutY="188.0" mnemonicParsing="false" onAction="#onGrant" prefHeight="40.0" prefWidth="136.0" style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-border-radius: 6; -fx-background-radius: 6;" text="GRANT">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Button>
+                                <Label layoutX="392.0" layoutY="14.0" text="Column Selection (for SELECT/UPDATE only):">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <ScrollPane layoutX="375.0" layoutY="46.0" prefHeight="130.0" prefWidth="330.0">
+                                    <content>
+                                        <VBox fx:id="columnsContainer" prefHeight="128.0" prefWidth="320.0" />
+                                    </content>
+                                </ScrollPane>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="20.0" prefWidth="672.0" />
+                        <AnchorPane prefHeight="270.0" prefWidth="672.0">
+                            <children>
+                                <Label layoutX="31.0" layoutY="11.0" text="Granted Privileges:">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <TableView fx:id="grantedPrivileges_tableView" layoutX="31.0" layoutY="39.0" prefHeight="220.0" prefWidth="644.0">
+                                    <columns>
+                                        <TableColumn fx:id="col_grantee" prefWidth="160.0" text="Grantee" />
+                                        <TableColumn fx:id="col_privilege" prefWidth="160.0" text="Privilege" />
+                                        <TableColumn fx:id="col_grantable" prefWidth="100.0" text="Grant Option" />
+                                        <TableColumn fx:id="col_object" prefWidth="220.0" text="Object" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </VBox>
             </children>
         </AnchorPane>
     </children>
