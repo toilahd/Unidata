@@ -124,6 +124,9 @@ public class LoginController implements Initializable {
         else if (grantedRoles.contains("RL_GV")) {
             return "teacher";
         }
+        else if (grantedRoles.contains("RL_NVCTSV")) {
+            return "nvctsv";
+        }
         else {
             return "null"; // or another default role if applicable
         }
@@ -148,6 +151,9 @@ public class LoginController implements Initializable {
                 break;
             case "student":
                 fxmlFile = "/com/example/unidata/PhanHe2/StudentView/StudentProfileView.fxml";
+                break;
+            case "nvctsv":
+                fxmlFile = "/com/example/unidata/PhanHe2/NVCTSV_View/NVCTSV_ProfileView.fxml";
                 break;
             default:
                 fxmlFile = "/com/example/unidata/default.fxml"; // optional fallback
