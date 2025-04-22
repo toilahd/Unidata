@@ -18,8 +18,6 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.example.unidata.controller.StudentController.EditStudentProfileController;
-
 public class StudentProfileController implements Initializable {
     @FXML
     private Label DIACHI;
