@@ -8,8 +8,8 @@ module com.example.unidata {
     requires javafx.base;
     requires java.management;
 
-    opens com.example.unidata to javafx.fxml;
     exports com.example.unidata;
+    opens com.example.unidata to javafx.fxml;
 
     // controller chính
     exports com.example.unidata.controller;
@@ -26,6 +26,8 @@ module com.example.unidata {
     exports com.example.unidata.controller.StudentController;
     opens com.example.unidata.controller.StudentController to javafx.fxml;
 
+    exports com.example.unidata.controller.StudentController.utils;
+    opens com.example.unidata.controller.StudentController.utils to javafx.fxml;
     // teacher controller
     exports com.example.unidata.controller.TeacherController;
     opens com.example.unidata.controller.TeacherController to javafx.fxml;
@@ -35,6 +37,13 @@ module com.example.unidata {
 
     exports com.example.unidata.controller.TeacherController.util;
     opens com.example.unidata.controller.TeacherController.util to javafx.fxml;
-    exports com.example.unidata.controller.StudentController.utils;
-    opens com.example.unidata.controller.StudentController.utils to javafx.fxml;
+
+    // NV_PCTSV
+
+    // NV_PDT
+    exports com.example.unidata.controller.NVPDTController;
+    opens com.example.unidata.controller.NVPDTController to javafx.fxml;
+
+    exports com.example.unidata.controller.NVPDTController.utils;
+    opens com.example.unidata.controller.NVPDTController.utils to javafx.fxml;
 }
