@@ -1,6 +1,4 @@
 -- Câu 3: QUAN HE SINH VIEN - CHINH SACH VPD 
-ALTER SESSION SET "_ORACLE_SCRIPT" = true;
-ALTER SESSION SET CURRENT_SCHEMA = "DBA_MANAGER";
 
 -- Xóa policy cũ (nếu tồn tại) trước khi tạo mới
 BEGIN
@@ -251,4 +249,3 @@ BEGIN
   );
 END;
 /
--- Câu 4: QUAN HE DANG KY - CHINH SACH VPD
