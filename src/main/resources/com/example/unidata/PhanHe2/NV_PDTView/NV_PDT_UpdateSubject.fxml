@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.unidata.PhanHe2.NV_TCHCView.NVTCHCTacVu">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.unidata.controller.NVPDTController.UpdateSubjectController">
    <children>
       <AnchorPane layoutX="2.0" layoutY="7.0" prefHeight="400.0" prefWidth="600.0">
          <children>
@@ -46,7 +46,7 @@
                   <TableColumn fx:id="magv" prefWidth="107.0" text="Mã giáo viên" />
                   <TableColumn fx:id="nam" prefWidth="73.0" text="Năm" />
                   <TableColumn fx:id="hocki" text="Học kỳ" />
-                  <TableColumn fx:id="hocki1" prefWidth="114.0" text="Thao tác" />
+                  <TableColumn fx:id="thaotac" prefWidth="114.0" text="Thao tác" />
                </columns>
             </TableView>
          </children>
