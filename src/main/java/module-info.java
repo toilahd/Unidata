@@ -46,4 +46,11 @@ module com.example.unidata {
 
     exports com.example.unidata.controller.NVPDTController.utils;
     opens com.example.unidata.controller.NVPDTController.utils to javafx.fxml;
+
+    // TRGDV
+    exports  com.example.unidata.controller.TRGDVController;
+    opens com.example.unidata.controller.TRGDVController to javafx.fxml;
+
+    exports com.example.unidata.controller.TRGDVController.util;
+    opens com.example.unidata.controller.TRGDVController.util to javafx.fxml;
 }

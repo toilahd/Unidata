@@ -1,31 +1,28 @@
 package com.example.unidata.controller.NVPDTController;
 
 import com.example.unidata.DatabaseConnection;
-import com.example.unidata.controller.NVPDTController.utils.Subject;
-import javafx.beans.property.ReadOnlyIntegerWrapper;
+import com.example.unidata.controller.NVPDTController.utils.EditSubject;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 
-public class SubjectListController implements Initializable {
+public class UpdateSubjectController {
     @FXML private Button btnSignOut;
     @FXML private Button btnUserProfile;
     @FXML private Button btnSubjectList;
@@ -34,52 +31,51 @@ public class SubjectListController implements Initializable {
     @FXML private Button btnDeleteSubject;
     @FXML private Button btnUpdateStudent;
 
-    @FXML private TableView<Subject> tableMon;
-    @FXML private TableColumn<Subject, String> mamm;
-    @FXML private TableColumn<Subject, String> mahp;
-    @FXML private TableColumn<Subject, String> magv;
-    @FXML private TableColumn<Subject, Integer> nam;
-    @FXML private TableColumn<Subject, Integer> hocki;
-    
+    @FXML private TableView<EditSubject> tableCapNhatMon;
+    @FXML private TableColumn<EditSubject, String> mamm;
+    @FXML private TableColumn<EditSubject, String> mahp;
+    @FXML private TableColumn<EditSubject, String> magv;
+    @FXML private TableColumn<EditSubject, Integer> nam;
+    @FXML private TableColumn<EditSubject, Integer> hocki;
+    @FXML private TableColumn<EditSubject, Button> thaotac;
 
-    private ObservableList<Subject> subjectList = FXCollections.observableArrayList();
-    DeleteSubjectController deleteController = new DeleteSubjectController(); // Create or retrieve the controller instance
 
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Bind columns to the data properties
+    private ObservableList<EditSubject> subjectList = FXCollections.observableArrayList();
+
+    @FXML
+    void initialize() {
         mamm.setCellValueFactory(new PropertyValueFactory<>("maMoMon"));
         mahp.setCellValueFactory(new PropertyValueFactory<>("maHocPhan"));
         magv.setCellValueFactory(new PropertyValueFactory<>("maGiangVien"));
-        nam.setCellValueFactory(new PropertyValueFactory<>("nam"));
         hocki.setCellValueFactory(new PropertyValueFactory<>("hocKi"));
+        nam.setCellValueFactory(new PropertyValueFactory<>("nam"));
+        thaotac.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getEditButton()));
 
         loadData();
     }
 
     public void loadData() {
-        subjectList.clear(); // clear existing data in list before loading new data
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
+        subjectList.clear();
 
         try {
             Connection conn = DatabaseConnection.getConnection();
             String sql = "SELECT * FROM DBA_MANAGER.UV_NVPDT_MOMON";
-            stmt = conn.prepareStatement(sql);
-            rs = stmt.executeQuery();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Subject subject = new Subject(
+                EditSubject subject = new EditSubject(
                         rs.getString("MAMM"),
                         rs.getString("MAHP"),
                         rs.getString("MAGV"),
                         rs.getInt("NAM"),
                         rs.getInt("HK"),
-                        deleteController
+                        this
                 );
                 subjectList.add(subject);
             }
 
-            tableMon.setItems(subjectList);
+            tableCapNhatMon.setItems(subjectList);
 
         } catch (SQLException e) {
             e.printStackTrace();

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.unidata.PhanHe2.NV_TCHCView.NVTCHCProfileView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.unidata.controller.TRGDVController.PhanCongController">
    <children>
       <AnchorPane prefHeight="42.0" prefWidth="900.0" style="-fx-background-color: #5dade2;">
          <children>
@@ -31,18 +31,16 @@
                   <Font name="Arial Bold" size="36.0" />
                </font>
             </Label>
-            <Button fx:id="btnCourseRegistration21" layoutX="8.0" layoutY="223.0" mnemonicParsing="false" onAction="#onCourseRegistration" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #008000; -fx-text-fill: white; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 15;" text="Phân công giảng dạy" />
+            <Button layoutX="8.0" layoutY="223.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #008000; -fx-text-fill: white; -fx-border-color: transparent; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 15;" text="Phân công giảng dạy" />
          </children>
       </AnchorPane>
-      <TableView fx:id="addAccounts_tableView" layoutX="200.0" layoutY="128.0" prefHeight="258.0" prefWidth="717.0">
+      <TableView fx:id="addAccounts_tableView" layoutX="247.0" layoutY="117.0" prefHeight="411.0" prefWidth="616.0">
          <columns>
-            <TableColumn fx:id="addAccounts_col_id" prefWidth="30" text="ID" />
-            <TableColumn fx:id="addAccounts_col_username" prefWidth="123.0" text="HoTen" />
-            <TableColumn fx:id="addAccounts_col_role" prefWidth="59.0" text="Phai" />
-            <TableColumn prefWidth="141.0" text="NgSinh" />
-            <TableColumn prefWidth="112.0" text="ĐT" />
-            <TableColumn prefWidth="98.0" text="VaiTro" />
-            <TableColumn prefWidth="153.0" text="MaDV" />
+            <TableColumn fx:id="addAccounts_col_MaMM" prefWidth="123.0" text="MaMM" />
+            <TableColumn fx:id="addAccounts_col_MaHP" prefWidth="123.0" text="MaHP" />
+            <TableColumn fx:id="addAccounts_col_MaGV" prefWidth="123.0" text="MaGV" />
+            <TableColumn fx:id="addAccounts_col_HK" prefWidth="123.0" text="HK" />
+            <TableColumn fx:id="addAccounts_col_Nam" prefWidth="123.0" text="Nam" />
          </columns>
       </TableView>
    </children>

@@ -75,8 +75,8 @@ public class DeleteSubjectController implements Initializable {
                         rs.getString("MAMM"),
                         rs.getString("MAHP"),
                         rs.getString("MAGV"),
-                        rs.getInt("HK"),
                         rs.getInt("NAM"),
+                        rs.getInt("HK"),
                         this
                 );
                 subjectList.add(subject);

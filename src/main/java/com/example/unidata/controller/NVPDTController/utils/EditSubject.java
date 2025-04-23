@@ -1,74 +1,68 @@
 package com.example.unidata.controller.NVPDTController.utils;
 
-import javafx.application.Platform;
+import com.example.unidata.controller.NVPDTController.UpdateSubjectWindowController;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.scene.chart.PieChart;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 
-import com.example.unidata.DatabaseConnection;
-import java.sql.*;
-import com.example.unidata.controller.NVPDTController.DeleteSubjectController;
 import com.example.unidata.controller.NVPDTController.UpdateSubjectController;
+import javafx.stage.Stage;
 
-public class Subject {
+import java.io.IOException;
+
+public class EditSubject {
     private final SimpleStringProperty maMoMon;
     private final SimpleStringProperty maHocPhan;
     private final SimpleStringProperty maGiangVien;
     private final SimpleIntegerProperty nam;
     private final SimpleIntegerProperty hocKi;
-    private Button deleteButton;
+    private Button editButton;
 
-    DeleteSubjectController controller = new DeleteSubjectController();
-    public Subject(String maMoMon, String maHocPhan, String maGiangVien, int nam, int hocKi, DeleteSubjectController controller) {
+    UpdateSubjectController controller = new UpdateSubjectController();
+    public EditSubject(String maMoMon, String maHocPhan, String maGiangVien, int nam, int hocKi, UpdateSubjectController controller) {
         this.maMoMon = new SimpleStringProperty(maMoMon);
         this.maHocPhan = new SimpleStringProperty(maHocPhan);
         this.maGiangVien = new SimpleStringProperty(maGiangVien);
         this.nam = new SimpleIntegerProperty(nam);
         this.hocKi = new SimpleIntegerProperty(hocKi);
 
-        this.deleteButton = new Button("Xóa");
+        this.editButton = new Button("Sửa");
         this.controller = controller;
         if (controller != null) {
-            this.deleteButton.setOnAction(event -> deleteSubject());
+            this.editButton.setOnAction(event -> onUpdateSubject());
         } else {
-            this.deleteButton.setOnAction(event -> System.out.println("No controller for deletion"));
+            this.editButton.setOnAction(event -> System.out.println("No controller for editing"));
         }
     }
 
-    public Button getDeleteButton() {
-        return deleteButton;
-    }
-
-    private void deleteSubject() {
-        String sql = "DELETE FROM DBA_MANAGER.UV_NVPDT_MOMON WHERE MAMM = ?";
-
+    private void onUpdateSubject() {
         try {
-            Connection con = DatabaseConnection.getConnection();
-            PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setString(1, maMoMon.get());
-            int rowsAffected = stmt.executeUpdate();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/unidata/PhanHe2/NV_PDTView/UpdateSubjectWindow.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load()));
+            stage.setTitle("Cập nhật môn học");
 
-            // Kiểm tra nếu xóa thành công
-            if (rowsAffected > 0) {
-                System.out.println("Subject deleted with MAMM: " + maMoMon.get()); // In ra console để kiểm tra
-                // Hiển thị thông báo trong UI thread
-                    showAlert("Subject with MAMM " + maMoMon.get() + " deleted successfully.");
-                if (controller != null) {
-                    controller.loadData();
-                    System.out.println("Load data in controller");
-                }
-            } else {
-                showAlert("No subject found with MAMM: " + maMoMon.get());
-            }
-        } catch (SQLException e) {
+
+            System.out.println("Controller loaded: " + loader.getController().getClass().getName());
+
+
+            UpdateSubjectWindowController updateController = loader.getController();
+            updateController.initialize(this, controller);
+
+            stage.show();
+        } catch (IOException e) {
             e.printStackTrace();
-            // Xử lý lỗi trong UI thread
-            Platform.runLater(() -> showAlert("There is something wrong with the delete operation."));
+            showAlert("Lỗi khi mở cửa sổ cập nhật môn học.");
         }
+    }
+
+    public Button getEditButton() {
+        return editButton;
     }
 
     private void showAlert(String message) {
