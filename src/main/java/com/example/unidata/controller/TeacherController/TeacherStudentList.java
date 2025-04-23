@@ -53,6 +53,7 @@ public class TeacherStudentList implements Initializable {
             tableView.setItems(data);
         } catch (Exception e) {
             e.printStackTrace();
+            showAlert("Lỗi: " + e.getMessage());
         }
     }
 

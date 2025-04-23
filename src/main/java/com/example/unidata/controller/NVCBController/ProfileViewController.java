@@ -92,7 +92,6 @@ public class ProfileViewController implements Initializable {
     }
 
 
-
     @FXML
     private void onSignOut(ActionEvent event) {
         try {

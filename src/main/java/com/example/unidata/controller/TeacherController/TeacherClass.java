@@ -55,6 +55,7 @@ public class TeacherClass implements Initializable {
             phanCong.setItems(data);
         } catch (Exception e) {
             e.printStackTrace();
+            showAlert("Lỗi: " + e.getMessage());
         }
     }
 

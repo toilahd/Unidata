@@ -53,4 +53,11 @@ module com.example.unidata {
 
     exports com.example.unidata.controller.TRGDVController.util;
     opens com.example.unidata.controller.TRGDVController.util to javafx.fxml;
+
+    // NV_TCHC
+    exports com.example.unidata.controller.NVTCHCController;
+    opens com.example.unidata.controller.NVTCHCController to javafx.fxml;
+
+    exports com.example.unidata.controller.NVTCHCController.utils;
+    opens com.example.unidata.controller.NVTCHCController.utils to javafx.fxml;
 }
