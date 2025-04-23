@@ -86,6 +86,14 @@ public class CourseRegistrationController implements Initializable {
         }
     }
 
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Thông báo");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
     private void setupTableColumns() {
         colCode1.setCellValueFactory(new PropertyValueFactory<>("code"));
         colName1.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -126,6 +134,7 @@ public class CourseRegistrationController implements Initializable {
             addDeleteButtonToTable();
         } catch (SQLException e) {
             e.printStackTrace();
+            showAlert("Lỗi load môn đã đăng ký: " + e.getMessage());
         }
     }
 
@@ -162,7 +171,7 @@ public class CourseRegistrationController implements Initializable {
             }
             addRegisterButtonToTable();
         } catch (SQLException e) {
-            System.err.println("Lỗi SQL khi tải khóa học chưa đăng ký: " + e.getMessage());
+            showAlert("Lỗi SQL khi tải khóa học chưa đăng ký: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -224,26 +233,29 @@ public class CourseRegistrationController implements Initializable {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            showAlert("Lỗi khi đăng ký khóa học: " + e.getMessage());
         }
     }
 
     private void unregisterCourse(Course course) {
-        try (Connection conn = DatabaseConnection.getConnection()) {
+        try {
+            Connection conn = DatabaseConnection.getConnection();
             String sql = "DELETE FROM DBA_MANAGER.DANGKY WHERE MASV = ? AND MAMM = ?";
-            try (PreparedStatement ps = conn.prepareStatement(sql)) {
-                ps.setString(1, studentId);
-                ps.setString(2, course.getOpenCourseId()); // dùng MAMM
-                int rowsAffected = ps.executeUpdate();
-                if (rowsAffected == 0) {
-                    System.out.println("Không có bản ghi nào bị xóa. Có thể do chính sách VPD.");
-                } else {
-                    System.out.println("Đã xóa thành công.");
-                    loadRegisteredCourses();
-                    loadUnregisteredCourses();
-                }
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, studentId);
+            ps.setString(2, course.getOpenCourseId()); // dùng MAMM
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected == 0) {
+                showAlert("Không có bản ghi nào bị xóa. Có thể do chính sách VPD.");
+
+            } else {
+                showAlert("Đã xóa thành công.");
+                loadRegisteredCourses();
+                loadUnregisteredCourses();
             }
         } catch (SQLException e) {
             // Kiểm tra nếu có lỗi liên quan đến VPD
+            showAlert("Lỗi khi hủy đăng ký khóa học" + e.getMessage());
             if (e.getMessage().contains("ORA-28115")) {
                 System.out.println("Cảnh báo: Thao tác bị từ chối bởi chính sách VPD.");
             } else {

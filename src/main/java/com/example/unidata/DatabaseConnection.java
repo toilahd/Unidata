@@ -5,7 +5,9 @@ import java.sql.*;
 public class DatabaseConnection {
     private static Connection connection;  // Add static connection instance
     private static String currentUsername;
+    private static String currentPassword;
     private static String currentRole;
+
 
     public static Connection connectDb(String userName, String password) {
         try {
@@ -16,7 +18,7 @@ public class DatabaseConnection {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
             connection = DriverManager.getConnection(url, userName, password);
-
+            currentPassword = password;
             currentUsername = userName;
             return connection;
         } catch (Exception e) {
@@ -26,6 +28,18 @@ public class DatabaseConnection {
     }
 
     public static Connection getConnection() {
+        try {
+            if (connection == null || connection.isClosed() || !connection.isValid(5)) {
+                if (currentUsername != null && currentPassword != null) {
+                    System.out.println("Reconnecting to the database...");
+                    connectDb(currentUsername, currentPassword);
+                } else {
+                    System.err.println("No stored credentials. Cannot reconnect.");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return connection;
     }
 
