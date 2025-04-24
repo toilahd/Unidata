@@ -121,7 +121,7 @@ public class PhanCongController implements Initializable{
             connection = DatabaseConnection.getConnection();
 
             // Use the view that's already filtered for the current department head
-            String query = "SELECT * FROM UV_TRGDV_MOMON";
+            String query = "SELECT * FROM DBA_MANAGER.UV_TRGDV_MOMON";
             statement = connection.prepareStatement(query);
             resultSet = statement.executeQuery();
 
