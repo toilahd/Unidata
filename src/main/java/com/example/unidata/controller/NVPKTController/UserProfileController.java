@@ -1,4 +1,4 @@
-package com.example.unidata.controller.NVTCHCController;
+package com.example.unidata.controller.NVPKTController;
 
 import com.example.unidata.DatabaseConnection;
 import javafx.event.ActionEvent;
@@ -11,17 +11,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import javax.swing.table.AbstractTableModel;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ProfileViewController {
+public class UserProfileController {
     @FXML private Button btnSignOut;
     @FXML private Button btnUserProfile;
-    @FXML private Button btnStaffList;
-    @FXML private Button btnAddStaff;
+    @FXML private Button viewRegistered;
     @FXML private Button editProfile;
 
     @FXML private Label MANLD;
@@ -33,7 +33,8 @@ public class ProfileViewController {
     @FXML private Label MAKHOA;
     @FXML private TextField DT;
 
-    public void initialize() {
+    @FXML
+    void initialize(){
         loadProfileData();
         editProfile.setOnAction(this::onEditProfile);
     }
@@ -63,7 +64,6 @@ public class ProfileViewController {
         }
     }
 
-    @FXML
     public void onEditProfile(ActionEvent event) {
         String newPhone = DT.getText();
 
@@ -109,14 +109,13 @@ public class ProfileViewController {
         }
     }
 
-    @FXML public void onProfile() {
-        loadScene("/com/example/unidata/PhanHe2/NV_TCHCView/NV_TCHC_ProfileView.fxml", "NVTCHC - Profile", btnUserProfile);
+    @FXML
+    private void onProfile() {
+        loadScene("/com/example/unidata/PhanHe2/NV_PKTView/NV_PKT_ProfileView.fxml", "Nhân viên phòng khảo thí - Profile", btnUserProfile);
     }
-    @FXML public void onStaffList() {
-        loadScene("/com/example/unidata/PhanHe2/NV_TCHCView/NV_TCHC_StaffList.fxml", "NVTCHC - Danh sách nhân viên", btnStaffList);
-    }
-    @FXML public void onAddStaff() {
-        loadScene("/com/example/unidata/PhanHe2/NV_TCHCView/NV_TCHC_AddStaff.fxml", "NVTCHC - Thêm nhân viên mới", btnAddStaff);
+    @FXML
+    private void onViewRegistered() {
+        loadScene("/com/example/unidata/PhanHe2/NV_PKTView/NV_PKT_DangKyList.fxml", "Nhân viên phòng khảo thí - Danh sách đăng kí", viewRegistered);
     }
     private void loadScene(String fxmlFile, String title, Button button) {
         try {

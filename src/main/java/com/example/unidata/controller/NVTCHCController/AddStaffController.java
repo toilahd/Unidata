@@ -34,6 +34,7 @@ public class AddStaffController {
         loadGioiTinh();
         loadVaiTro();
         loadDepartments();
+
     }
 
     @FXML public void onAdd(ActionEvent event) {

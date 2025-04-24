@@ -140,7 +140,7 @@ BEGIN
         BEGIN
             SELECT VAITRO INTO v_role FROM NHANVIEN WHERE MANLD = SUBSTR(v_user, INSTR(v_user, '_') + 1);
             
-            IF v_role IN ('NV_PDT', 'NV PKT') THEN
+            IF v_role IN ('NVPDT', 'NVPKT') THEN
                 RETURN '1=1'; -- Full access
             END IF;
         EXCEPTION
@@ -209,10 +209,30 @@ BEGIN
         v_end := v_start + 14;
 
         RETURN 'SYSDATE <= TO_DATE(''' || TO_CHAR(v_end, 'DD-MM-YYYY') || ''', ''DD-MM-YYYY'')';
-
+    ELSIF v_user LIKE 'NVPKT_%' THEN
+        RETURN '1=1';
     END IF;
-
     RETURN '1=0'; -- Mặc định chặn
+END;
+/
+
+-- nhân viên phòng khảo thí chỉ được cập nhật điểm trên 4 cột điểm:
+GRANT UPDATE (DIEMQT, DIEMTH, DIEMCK, DIEMTK) ON DBA_MANAGER.DANGKY TO RL_NVPDT;
+
+CREATE OR REPLACE TRIGGER trg_limit_update_nvpkt
+BEFORE UPDATE ON DANGKY
+FOR EACH ROW
+DECLARE
+    v_user VARCHAR2(30) := SYS_CONTEXT('USERENV', 'SESSION_USER');
+BEGIN
+    -- Nếu là người dùng thuộc NVPKT_
+    IF v_user LIKE 'NVPKT_%' THEN
+        -- Kiểm tra có thay đổi bất kỳ cột nào KHÔNG PHẢI là điểm
+        IF (:OLD.MASV != :NEW.MASV OR
+            :OLD.MAMM != :NEW.MAMM) THEN
+            RAISE_APPLICATION_ERROR(-20001, 'NVPKT chỉ được phép cập nhật điểm (DIEMQT, DIEMCK, DIEMTK, DIEMTH)');
+        END IF;
+    END IF;
 END;
 
 / 

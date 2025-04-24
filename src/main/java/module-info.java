@@ -8,8 +8,8 @@ module com.example.unidata {
     requires javafx.base;
     requires java.management;
 
-    exports com.example.unidata;
     opens com.example.unidata to javafx.fxml;
+    exports com.example.unidata;
 
     // controller chính
     exports com.example.unidata.controller;
@@ -22,42 +22,54 @@ module com.example.unidata {
     exports com.example.unidata.controller.AdminController.util;
     opens com.example.unidata.controller.AdminController.util to javafx.fxml;
 
-    // student controller
+    // student
     exports com.example.unidata.controller.StudentController;
     opens com.example.unidata.controller.StudentController to javafx.fxml;
 
     exports com.example.unidata.controller.StudentController.utils;
     opens com.example.unidata.controller.StudentController.utils to javafx.fxml;
-    // teacher controller
+
+    // teacher
     exports com.example.unidata.controller.TeacherController;
     opens com.example.unidata.controller.TeacherController to javafx.fxml;
-
-    exports  com.example.unidata.controller.NVCTSVController;
-    opens com.example.unidata.controller.NVCTSVController to javafx.fxml;
 
     exports com.example.unidata.controller.TeacherController.util;
     opens com.example.unidata.controller.TeacherController.util to javafx.fxml;
 
-    // NV_PCTSV
 
-    // NV_PDT
+    // NVCB (nhân viên cơ bản)
+    exports com.example.unidata.controller.NVCBController;
+    opens com.example.unidata.controller.NVCBController to javafx.fxml;
+
+    // NV_PCTSV (nhân viên phòng công tác sinh viên)
+    exports  com.example.unidata.controller.NVCTSVController;
+    opens com.example.unidata.controller.NVCTSVController to javafx.fxml;
+
+    // NV_PDT (nhân viên phòng đào tạo)
     exports com.example.unidata.controller.NVPDTController;
     opens com.example.unidata.controller.NVPDTController to javafx.fxml;
 
     exports com.example.unidata.controller.NVPDTController.utils;
     opens com.example.unidata.controller.NVPDTController.utils to javafx.fxml;
 
-    // TRGDV
+    // TRGDV (trưởng đơn vị)
     exports  com.example.unidata.controller.TRGDVController;
     opens com.example.unidata.controller.TRGDVController to javafx.fxml;
 
     exports com.example.unidata.controller.TRGDVController.util;
     opens com.example.unidata.controller.TRGDVController.util to javafx.fxml;
 
-    // NV_TCHC
+    // NV_TCHC (nhân viên phòng tổ chức hành chính)
     exports com.example.unidata.controller.NVTCHCController;
     opens com.example.unidata.controller.NVTCHCController to javafx.fxml;
 
     exports com.example.unidata.controller.NVTCHCController.utils;
     opens com.example.unidata.controller.NVTCHCController.utils to javafx.fxml;
+
+    // NV_PKT (nhân viên phòng khảo thí)
+    exports com.example.unidata.controller.NVPKTController;
+    opens com.example.unidata.controller.NVPKTController to javafx.fxml;
+
+    exports com.example.unidata.controller.NVPKTController.utils;
+    opens com.example.unidata.controller.NVPKTController.utils to javafx.fxml;
 }
