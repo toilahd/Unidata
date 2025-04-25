@@ -202,7 +202,7 @@ public class QLSinhVienController implements Initializable {
 
     @FXML
     public void onProfile() {
-        loadScene("/com/example/unidata/PhanHe2/NVCTSVView/NVCTSV_ProfileView.fxml", "Thông tin cá nhân", btnUserProfile1);
+        loadScene("/com/example/unidata/PhanHe2/NVCTSV_View/NVCTSV_ProfileView.fxml", "Thông tin cá nhân", btnUserProfile1);
     }
 
     @FXML

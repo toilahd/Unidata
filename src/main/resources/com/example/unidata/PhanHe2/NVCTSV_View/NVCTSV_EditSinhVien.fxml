@@ -19,6 +19,16 @@
                 <ColumnConstraints minWidth="100" prefWidth="150" />
                 <ColumnConstraints prefWidth="350" />
             </columnConstraints>
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
             <children>
                 <Label text="Mã sinh viên:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
                 <TextField fx:id="masv" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="0" />
@@ -44,16 +54,6 @@
                 <Label text="Tình trạng:" GridPane.columnIndex="0" GridPane.rowIndex="7" />
                 <TextField fx:id="tinhtrang" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             </children>
-            <rowConstraints>
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-            </rowConstraints>
         </GridPane>
 
         <Label layoutX="39.0" layoutY="31.0" style="-fx-font-size: 24; -fx-font-weight: bold;" text="Cập nhật sinh viên" />

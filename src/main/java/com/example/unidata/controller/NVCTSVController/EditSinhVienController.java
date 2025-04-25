@@ -52,50 +52,51 @@ public class EditSinhVienController {
     }
 
     @FXML
-    public void capNhatSinhVien(ActionEvent event) {
-        if (validateInputs()) {
-            try {
-                // Parse date from text
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                java.util.Date parsedDate = dateFormat.parse(ngsinh.getText());
-                Date sqlDate = new Date(parsedDate.getTime());
+public void capNhatSinhVien(ActionEvent event) {
+    if (validateInputs()) {
+        try {
+            // Parse date from text
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            java.util.Date parsedDate = dateFormat.parse(ngsinh.getText());
+            Date sqlDate = new Date(parsedDate.getTime());
 
-                // SQL query to update student
-                String sql = "UPDATE DBA_MANAGER.SINHVIEN SET HOTEN=?, PHAI=?, NGSINH=?, DCHI=?, DT=?, KHOA=? WHERE MASV=?";
+            // SQL query to update student
+            String sql = "UPDATE DBA_MANAGER.SINHVIEN SET HOTEN=?, PHAI=?, NGSINH=?, DCHI=?, DT=?, KHOA=? WHERE MASV=?";
 
-                try (Connection conn = DatabaseConnection.getConnection();
-                     PreparedStatement stmt = conn.prepareStatement(sql)) {
-                    
-                    stmt.setString(1, hoten.getText().trim());
-                    stmt.setString(2, phai.getText().trim());
-                    stmt.setDate(3, sqlDate);
-                    stmt.setString(4, diachi.getText().trim());
-                    stmt.setString(5, dienthoai.getText().trim());
-                    stmt.setString(6, khoa.getText().trim());
-                    stmt.setString(7, tinhtrang.getText().trim());
-                    stmt.setString(8, masv.getText().trim());
-                    
-                    int result = stmt.executeUpdate();
-                    
-                    if (result > 0) {
-                        showAlert(Alert.AlertType.INFORMATION, "Thành công", "Sinh viên đã được cập nhật thành công!");
-                        
-                        // Close the window
-                        Stage stage = (Stage) btnCapNhat.getScene().getWindow();
-                        stage.close();
-                    } else {
-                        showAlert(Alert.AlertType.ERROR, "Lỗi", "Không thể cập nhật sinh viên.");
-                    }
-                }
+            try (Connection conn = DatabaseConnection.getConnection();
+                 PreparedStatement stmt = conn.prepareStatement(sql)) {
                 
-            } catch (ParseException e) {
-                showAlert(Alert.AlertType.ERROR, "Lỗi", "Định dạng ngày sinh không hợp lệ. Sử dụng định dạng dd/MM/yyyy");
-            } catch (Exception e) {
-                showAlert(Alert.AlertType.ERROR, "Lỗi SQL", "Lỗi khi cập nhật sinh viên: " + e.getMessage());
-                e.printStackTrace();
+                stmt.setString(1, hoten.getText().trim());
+                stmt.setString(2, phai.getText().trim());
+                stmt.setDate(3, sqlDate);
+                stmt.setString(4, diachi.getText().trim());
+                stmt.setString(5, dienthoai.getText().trim());
+                stmt.setString(6, khoa.getText().trim());
+                stmt.setString(7, masv.getText().trim()); // Changed from position 8 to 7
+                
+                // Remove this line - it's causing the array index error
+                // stmt.setString(7, tinhtrang.getText().trim());
+                
+                int result = stmt.executeUpdate();
+                
+                if (result > 0) {
+                    showAlert(Alert.AlertType.INFORMATION, "Thành công", "Sinh viên đã được cập nhật thành công!");
+                    
+                    // Close the window
+                    Stage stage = (Stage) btnCapNhat.getScene().getWindow();
+                    stage.close();
+                } else {
+                    showAlert(Alert.AlertType.ERROR, "Lỗi", "Không thể cập nhật sinh viên.");
+                }
             }
+        } catch (ParseException e) {
+            showAlert(Alert.AlertType.ERROR, "Lỗi", "Định dạng ngày sinh không hợp lệ. Sử dụng định dạng dd/MM/yyyy");
+        } catch (Exception e) {
+            showAlert(Alert.AlertType.ERROR, "Lỗi SQL", "Lỗi khi cập nhật sinh viên: " + e.getMessage());
+            e.printStackTrace();
         }
     }
+}
     
     private boolean validateInputs() {
         StringBuilder errors = new StringBuilder();
