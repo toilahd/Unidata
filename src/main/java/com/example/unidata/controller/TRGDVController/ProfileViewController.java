@@ -107,7 +107,7 @@ public class ProfileViewController implements Initializable {
 
     @FXML
     void onPhanCongList(ActionEvent event) {
-
+        loadScene("/com/example/unidata/PhanHe2/TRGDV_View/TRGDV_PhanCong.fxml", "Phan Cong - TRGDV", btnStaffsList);
     }
 
     @FXML
