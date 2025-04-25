@@ -133,7 +133,7 @@ public class StaffListController {
                 var sql = "DELETE FROM DBA_MANAGER.NHANVIEN WHERE MANLD = ?";
                 var stmt = conn.prepareStatement(sql);
                 stmt.setString(1, nv.getManld());
-
+                
                 int rowsDeleted = stmt.executeUpdate();
                 if (rowsDeleted > 0) {
                     showAlert("Xóa nhân viên thành công!");
