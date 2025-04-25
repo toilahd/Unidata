@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="484.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.unidata.controller.NVCTSVController.ThemSinhVienController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="484.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.unidata.controller.NVCTSVController.EditSinhVienController">
     <children>
         <GridPane hgap="15" layoutX="39.0" layoutY="84.0" prefHeight="253.0" prefWidth="518.0" vgap="15">
             <padding>
@@ -21,7 +21,7 @@
             </columnConstraints>
             <children>
                 <Label text="Mã sinh viên:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                <TextField fx:id="masv" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <TextField fx:id="masv" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
                 <Label text="Họ và tên:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
                 <TextField fx:id="hoten" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -42,21 +42,21 @@
                 <TextField fx:id="khoa" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
                 <Label text="Tình trạng:" GridPane.columnIndex="0" GridPane.rowIndex="7" />
-                <Label text="NULL" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                <TextField fx:id="tinhtrang" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             </children>
-         <rowConstraints>
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-         </rowConstraints>
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
         </GridPane>
 
-        <Label layoutX="39.0" layoutY="31.0" style="-fx-font-size: 24; -fx-font-weight: bold;" text="Thêm sinh viên" />
-        <Button fx:id="btnThem" layoutX="510.0" layoutY="423.0" mnemonicParsing="false" onAction="#themSinhVien" text="Thêm" />
+        <Label layoutX="39.0" layoutY="31.0" style="-fx-font-size: 24; -fx-font-weight: bold;" text="Cập nhật sinh viên" />
+        <Button fx:id="btnCapNhat" layoutX="497.0" layoutY="423.0" mnemonicParsing="false" onAction="#capNhatSinhVien" text="Cập nhật" />
     </children>
 </AnchorPane>

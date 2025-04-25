@@ -45,6 +45,9 @@ module com.example.unidata {
     exports  com.example.unidata.controller.NVCTSVController;
     opens com.example.unidata.controller.NVCTSVController to javafx.fxml;
 
+    exports com.example.unidata.controller.NVCTSVController.utils;
+    opens com.example.unidata.controller.NVCTSVController.utils to javafx.fxml;
+
     // NV_PDT (nhân viên phòng đào tạo)
     exports com.example.unidata.controller.NVPDTController;
     opens com.example.unidata.controller.NVPDTController to javafx.fxml;

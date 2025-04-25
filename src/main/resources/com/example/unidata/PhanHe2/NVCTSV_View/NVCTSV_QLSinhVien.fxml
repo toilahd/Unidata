@@ -9,61 +9,54 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="563.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.unidata.controller.NVCTSVController.QLSinhVienController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="650.0" prefWidth="1051.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.unidata.controller.NVCTSVController.QLSinhVienController">
    <children>
+
       <!-- Top bar -->
-      <AnchorPane prefHeight="42.0" prefWidth="929.0" style="-fx-background-color: #5dade2;">
+      <AnchorPane prefHeight="42.0" prefWidth="1051.0" style="-fx-background-color: #5dade2;">
          <children>
-            <Button fx:id="btnSignOut" layoutX="819.0" layoutY="6.0" mnemonicParsing="false" onAction="#onSignOut" prefHeight="30.0" prefWidth="103.0" style="-fx-background-color: transparent; -fx-text-fill: black;" text="Sign Out" />
+            <Button fx:id="btnSignOut" layoutX="949.0" layoutY="6.0" mnemonicParsing="false" onAction="#onSignOut" prefHeight="30.0" prefWidth="103.0" style="-fx-background-color: transparent; -fx-text-fill: black;" text="Sign Out" />
          </children>
       </AnchorPane>
 
       <!-- Title -->
-      <Label layoutX="219.0" layoutY="59.0" style="-fx-font-size: 24; -fx-font-weight: bold;" text="Quản lý sinh viên" />
+      <Label layoutX="250.0" layoutY="59.0" style="-fx-font-size: 28; -fx-font-weight: bold;" text="Quản lý sinh viên" />
 
       <!-- Left Menu -->
-      <AnchorPane layoutY="41.0" prefHeight="517.0" prefWidth="200.0" style="-fx-background-color: #d6eaf8;">
+      <AnchorPane layoutY="42.0" prefHeight="608.0" prefWidth="220.0" style="-fx-background-color: #d6eaf8;">
          <children>
             <ImageView fitHeight="50.0" fitWidth="30.0" layoutX="15.0" layoutY="10.0" preserveRatio="true">
                <image>
                   <Image url="@../../../../../icon/school.png" />
                </image>
             </ImageView>
-            <Label layoutX="48.0" layoutY="4.0" text="Portal">
+            <Label layoutX="60.0" layoutY="4.0" text="Portal">
                <font>
                   <Font name="Arial Bold" size="36.0" />
                </font>
             </Label>
-            <Button fx:id="btnUserProfile1" layoutX="8.0" layoutY="101.0" mnemonicParsing="false" onAction="#onProfile" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-font-size: 15;" text="Thông tin cá nhân" />
-            <Button fx:id="btnCourseRegistration1" layoutX="8.0" layoutY="163.0" mnemonicParsing="false" onAction="#onCourseRegistration" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-font-size: 15;" text="Quản lý sinh Viên" />
+            <Button fx:id="btnUserProfile1" layoutX="18.0" layoutY="101.0" onAction="#onProfile" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-font-size: 15;" text="Thông tin cá nhân" />
+            <Button fx:id="btnQuanLySinhVien" layoutX="18.0" layoutY="163.0" onAction="#onQuanLySinhVien" prefHeight="36.0" prefWidth="183.0" style="-fx-background-color: #ccd1d1; -fx-font-size: 15;" text="Quản lý sinh viên" />
          </children>
       </AnchorPane>
 
-      <!-- TableView for Student Management -->
-      <TableView fx:id="studentTable" layoutX="220.0" layoutY="100.0" prefHeight="380.0" prefWidth="700.0">
+      <!-- TableView -->
+      <TableView fx:id="studentTable" layoutX="250.0" layoutY="109.0" prefHeight="440.0" prefWidth="803.0">
          <columns>
-            <TableColumn fx:id="colStudentId" prefWidth="44.0" text="Mã SV" />
-            <TableColumn fx:id="colFullName" prefWidth="79.199951171875" text="Họ và tên" />
-            <TableColumn fx:id="colGender" prefWidth="60.00006103515625" text="Phái" />
-            <TableColumn fx:id="colDOB" prefWidth="83.199951171875" text="Ngày sinh" />
-            <TableColumn fx:id="colAddress" prefWidth="122.39996337890625" text="Địa chỉ" />
-            <TableColumn fx:id="colPhone" minWidth="0.0" prefWidth="77.5999755859375" text="Điện thoại" />
-            <TableColumn fx:id="colFaculty" prefWidth="81.59991455078125" text="Khoa" />
-            <TableColumn fx:id="colStatus" minWidth="0.0" prefWidth="83.2000732421875" text="Tình trạng" />
-            <TableColumn fx:id="colAction" prefWidth="70.39996337890625" text="Thao Tác" />
+            <TableColumn fx:id="colStudentId" prefWidth="67.19999694824219" text="Mã SV" />
+            <TableColumn fx:id="colFullName" prefWidth="87.199951171875" text="Họ và tên" />
+            <TableColumn fx:id="colGender" prefWidth="56.79998779296875" text="Phái" />
+            <TableColumn fx:id="colDOB" prefWidth="101.5999755859375" text="Ngày sinh" />
+            <TableColumn fx:id="colAddress" prefWidth="135.199951171875" text="Địa chỉ" />
+            <TableColumn fx:id="colPhone" prefWidth="94.4000244140625" text="Điện thoại" />
+            <TableColumn fx:id="colFaculty" prefWidth="73.60003662109375" text="Khoa" />
+            <TableColumn fx:id="colStatus" prefWidth="83.2000732421875" text="Tình trạng" />
+            <TableColumn fx:id="colAction" prefWidth="90.4000244140625" text="Thao Tác" />
          </columns>
       </TableView>
+      <Button fx:id="btnThemSinhVien" layoutX="920.0" layoutY="569.0" onAction="#onThemSinhVien" prefHeight="42.0" prefWidth="105.0" style="-fx-background-color: #008000; -fx-text-fill: white;" text="Thêm ">
+         <font><Font size="16.0" /></font>
+      </Button>
 
-      <!-- Update Button -->
-      <Button layoutX="795.0" layoutY="503.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="105.0" style="-fx-background-color: #008000; -fx-text-fill: white;" text="Cập nhật">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Button>
-      <Button layoutX="667.0" layoutY="503.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="105.0" style="-fx-background-color: #008000; -fx-text-fill: white;" text="Thêm ">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Button>
    </children>
 </AnchorPane>
